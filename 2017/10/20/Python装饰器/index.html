@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="在说Python的装饰器之前，先说明闭包。 闭包闭包：首先必须是内部定义的函数，该函数包含对外部作用域而不是全局作用域名字的引用。定义：内部函数的代码包含对外部函数的代码的引用，但一定不是对全局作用域的引用。 闭包的基本形式  在函数F1中，定义F2，F2只能引用F1定义的变量，之后F1函数返回F2的函数名字  这样就保证了可以将F1的执行结果赋予给一个变量，该变量可以在之后的任何时刻随时可以运行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Help of Hexo">
-<meta property="og:url" content="http://eden1114.github.io/2017/10/15/Help-of-hexo/index.html">
+<meta property="og:title" content="Python装饰器">
+<meta property="og:url" content="http://eden1114.github.io/2017/10/20/Python装饰器/index.html">
 <meta property="og:site_name" content="RTFSC">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="在说Python的装饰器之前，先说明闭包。 闭包闭包：首先必须是内部定义的函数，该函数包含对外部作用域而不是全局作用域名字的引用。定义：内部函数的代码包含对外部函数的代码的引用，但一定不是对全局作用域的引用。 闭包的基本形式  在函数F1中，定义F2，F2只能引用F1定义的变量，之后F1函数返回F2的函数名字  这样就保证了可以将F1的执行结果赋予给一个变量，该变量可以在之后的任何时刻随时可以运行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-15T09:11:10.000Z">
+<meta property="og:updated_time" content="2017-10-20T01:37:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Help of Hexo">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Python装饰器">
+<meta name="twitter:description" content="在说Python的装饰器之前，先说明闭包。 闭包闭包：首先必须是内部定义的函数，该函数包含对外部作用域而不是全局作用域名字的引用。定义：内部函数的代码包含对外部函数的代码的引用，但一定不是对全局作用域的引用。 闭包的基本形式  在函数F1中，定义F2，F2只能引用F1定义的变量，之后F1函数返回F2的函数名字  这样就保证了可以将F1的执行结果赋予给一个变量，该变量可以在之后的任何时刻随时可以运行">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://eden1114.github.io/2017/10/15/Help-of-hexo/"/>
+  <link rel="canonical" href="http://eden1114.github.io/2017/10/20/Python装饰器/"/>
 
 
 
 
 
-  <title>Help of Hexo | RTFSC</title>
+  <title>Python装饰器 | RTFSC</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/15/Help-of-hexo/">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/20/Python装饰器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangYu">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Help of Hexo</h1>
+          <h1 class="post-title" itemprop="name headline">Python装饰器</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T15:55:57+08:00">
-                2017-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T09:25:37+08:00">
+                2017-10-20
               </time>
             
 
@@ -329,15 +329,11 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>在说Python的装饰器之前，先说明闭包。</p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>闭包：首先必须是内部定义的函数，该函数包含对外部作用域而不是全局作用域名字的引用。<br>定义：内部函数的代码包含对外部函数的代码的引用，但一定不是对全局作用域的引用。</p>
+<h2 id="闭包的基本形式"><a href="#闭包的基本形式" class="headerlink" title="闭包的基本形式"></a>闭包的基本形式</h2><p>  在函数F1中，定义F2，F2只能引用F1定义的变量，之后F1函数返回F2的函数名字<br>  这样就保证了可以将F1的执行结果赋予给一个变量，该变量可以在之后的任何时刻随时可以运行</p>
+<p>使用闭包的好处：自带状态即变量，可以不用传参就用，方便。</p>
+<p>闭包(closure)是函数式编程的重要的语法结构。<br>Python通过函数对象为基础，为闭包这一语法结构提供支持的 (我们在特殊方法与多范式中，已经多次看到Python使用对象来实现一些特殊的语法)。<br>Python一切皆对象，函数这一语法结构也是一个对象。<br>在函数对象中，可以像使用一个普通对象一样使用函数对象，比如更改函数对象的名字，或者将函数对象作为参数进行传递。</p>
 
       
     </div>
@@ -362,15 +358,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/15/Delicious/" rel="next" title="她爱吃的">
+                <i class="fa fa-chevron-left"></i> 她爱吃的
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/15/Delicious/" rel="prev" title="她爱吃的">
-                她爱吃的 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -495,7 +491,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的基本形式"><span class="nav-number">1.1.</span> <span class="nav-text">闭包的基本形式</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -263,6 +263,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/20/Python装饰器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RTFSC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/20/Python装饰器/" itemprop="url">Python装饰器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T09:25:37+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在说Python的装饰器之前，先说明闭包。</p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>闭包：首先必须是内部定义的函数，该函数包含对外部作用域而不是全局作用域名字的引用。<br>定义：内部函数的代码包含对外部函数的代码的引用，但一定不是对全局作用域的引用。</p>
+<h2 id="闭包的基本形式"><a href="#闭包的基本形式" class="headerlink" title="闭包的基本形式"></a>闭包的基本形式</h2><p>  在函数F1中，定义F2，F2只能引用F1定义的变量，之后F1函数返回F2的函数名字<br>  这样就保证了可以将F1的执行结果赋予给一个变量，该变量可以在之后的任何时刻随时可以运行</p>
+<p>使用闭包的好处：自带状态即变量，可以不用传参就用，方便。</p>
+<p>闭包(closure)是函数式编程的重要的语法结构。<br>Python通过函数对象为基础，为闭包这一语法结构提供支持的 (我们在特殊方法与多范式中，已经多次看到Python使用对象来实现一些特殊的语法)。<br>Python一切皆对象，函数这一语法结构也是一个对象。<br>在函数对象中，可以像使用一个普通对象一样使用函数对象，比如更改函数对象的名字，或者将函数对象作为参数进行传递。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/15/Delicious/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -282,7 +406,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/15/Delicious/" itemprop="url">投其所好</a></h1>
+                <a class="post-title-link" href="/2017/10/15/Delicious/" itemprop="url">她爱吃的</a></h1>
         
 
         <div class="post-meta">
@@ -334,21 +458,20 @@
       
         
           
-            <p>#零食类</p>
-<p>##膨化食品<br>薯片<br>薯条<br>呀土豆<br>好多鱼<br>逗乐薯  </p>
-<p>##肉类<br>鸭舌<br>鸭脖<br>凤爪  </p>
-<p>##饮料<br>维怡豆奶   </p>
-<p>##坚果<br>小核桃  </p>
-<p>##其他<br>海苔<br>泡芙<br>话梅<br>话梅瓜子<br>吸吸果冻   </p>
-<p>#小吃类<br>红糖糍粑<br>草莓糖葫芦<br>肥肠粉  </p>
-<p>#瓜果类<br>西瓜  </p>
-<p>#主食类</p>
-<p>##火锅<br>火锅<br>（羊蝎子 海底捞 涮羊肉）<br>{<br>虾滑<br>毛肚<br>羊肉卷<br>嫩牛肉<br>娃娃菜<br>平菇<br>}<br>串串   </p>
-<p>##烧烤<br>牛蛙<br>新奥尔良烤翅<br>羊肉串<br>鱿鱼  </p>
-<p>##海鲜<br>蒜蓉开背虾<br>大闸蟹<br>红烧鱼<br>蛏子<br>大龙虾<br>小龙虾<br>大闸蟹<br>铁板鱿鱼<br>花蛤  </p>
-<p>#其他<br>碧根果<br>冰淇淋  </p>
-<p>炸年糕<br>大的羊肉汤<br>冒菜  </p>
-<p>#禁忌<br><em>葱</em><br><em>香菜</em><br><em>不爱吃甜点</em>  </p>
+            <h1 id="零食类"><a href="#零食类" class="headerlink" title="零食类"></a>零食类</h1><h2 id="膨化食品"><a href="#膨化食品" class="headerlink" title="膨化食品"></a>膨化食品</h2><p>薯片<br>薯条<br>呀土豆<br>好多鱼<br>逗乐薯<br>旺旺仙贝   </p>
+<h2 id="肉类"><a href="#肉类" class="headerlink" title="肉类"></a>肉类</h2><p>鸭舌<br>鸭脖<br>鸭锁骨<br>凤爪<br>虎皮凤爪  </p>
+<h2 id="甜点和饮料"><a href="#甜点和饮料" class="headerlink" title="甜点和饮料"></a>甜点和饮料</h2><p>原味冰淇淋<br>香草冰淇淋<br>儿童奶酪<br>维怡豆奶<br>西米露  </p>
+<h2 id="坚果"><a href="#坚果" class="headerlink" title="坚果"></a>坚果</h2><p>小核桃<br>核桃仁<br>碧根果<br><em>不要开心果</em></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>海苔<br>泡芙<br>话梅<br>话梅瓜子<br>吸吸果冻   </p>
+<h1 id="小吃类"><a href="#小吃类" class="headerlink" title="小吃类"></a>小吃类</h1><p>红糖糍粑<br>肥肠粉<br>夫妻肺片<br>广式小甜肠<br>草莓糖葫芦<br>啵啵鱼<br>蛋包饭<br>关东煮<br>丑豆腐（灌汤）<br>炸年糕<br>炸鸡<br>咖喱<br>冒菜  </p>
+<h1 id="瓜果类"><a href="#瓜果类" class="headerlink" title="瓜果类"></a>瓜果类</h1><p>西瓜  </p>
+<h1 id="主食类"><a href="#主食类" class="headerlink" title="主食类"></a>主食类</h1><h2 id="火锅"><a href="#火锅" class="headerlink" title="火锅"></a>火锅</h2><p>火锅<br>（羊蝎子 海底捞 涮羊肉）<br>{<br>虾滑<br>毛肚<br>羊肉卷<br>嫩牛肉<br>娃娃菜<br>平菇<br>}<br>串串   </p>
+<h2 id="烧烤"><a href="#烧烤" class="headerlink" title="烧烤"></a>烧烤</h2><p>牛蛙<br>新奥尔良烤翅<br>羊肉串<br>鱿鱼  </p>
+<h2 id="海鲜"><a href="#海鲜" class="headerlink" title="海鲜"></a>海鲜</h2><p>蒜蓉开背虾<br>铁板鱿鱼<br>大闸蟹<br>红烧鱼<br>大龙虾<br>小龙虾<br>大闸蟹<br>花蛤<br>蛏子  </p>
+<h2 id="凉菜"><a href="#凉菜" class="headerlink" title="凉菜"></a>凉菜</h2><p>凉拌海带丝<br>凉拌海蜇  </p>
+<h1 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h1><p>大的羊肉汤</p>
+<h2 id="麻辣香锅"><a href="#麻辣香锅" class="headerlink" title="麻辣香锅"></a>麻辣香锅</h2><p>掌中宝<br>鸡翅  </p>
+<h1 id="禁忌"><a href="#禁忌" class="headerlink" title="禁忌"></a>禁忌</h1><p><em>葱</em><br><em>香菜</em><br><em>不爱吃甜点</em><br><em>不爱碳酸饮料</em></p>
 
           
         
@@ -558,7 +681,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
