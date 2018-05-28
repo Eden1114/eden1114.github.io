@@ -1,132 +1,349 @@
-	<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
-  
-  <title>2018-1-20 | RTFSC</title>
-  <meta name="author" content="YangYu">
-  
-  <meta name="description" content="Read The Fucking source code.">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="baidu-site-verification" content="PKCnJEpFee" />
-  <meta name="google-site-verification" content="jLT5ULNgnKKTiv0Rn4k91cJZ-zxO2DngJtNMF_Z1xok" />
-  <meta property="og:title" content="2018-1-20"/>
-  <meta property="og:site_name" content="RTFSC"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="jLT5ULNgnKKTiv0Rn4k91cJZ-zxO2DngJtNMF_Z1xok" />
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
-    <link rel="alternative" href="//atom.xml" title="RTFSC" type="application/atom+xml">
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
   
   
-		<!-- favicon -->
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#009688">
-		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-		<meta name="theme-color" content="#009688">
-		<!-- favicon end -->
-    <!-- <link href="/favicon.ico" rel="icon"> -->
+  
   
 
-  <!-- toc -->
-  <link rel="stylesheet" href="/libs/tocify/jquery.tocify.css" media="screen" type="text/css">
-
-  <!-- <link rel="stylesheet" href="/libs/bs/css/bootstrap.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" media="screen" type="text/css">
-
-  <!-- material design -->
-	<!-- <link rel="stylesheet" href="/libs/bs-material/css/ripples.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/ripples.min.css" media="screen" type="text/css">
-  <!-- <link rel="stylesheet" href="/libs/bs-material/css/material.min.css" media="screen" type="text/css"> -->
-	<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/material.min.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/highlight.light.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    
+    
+  
 
   
 
   
 
-  <script src="//apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/libs/jquery-2.0.3.min.js" type="text/javascript"><\/script>')</script>
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="后缀数组," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eden's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="#后缀数组SA(Suffix Array) S:给定字符串Suffix:从S[i]位开始的后缀SA:Suffix在字典序下的数组Rank:名词数组S    : a a b a a a a bIndex: 1 2 3 4 5 6 7 8 Suffix[i]:1: a a b a a a a b2: a b a a a a b3: b a a a a b4: a a a a b5: a a a b6:">
+<meta name="keywords" content="后缀数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018-1-20">
+<meta property="og:url" content="http://eden1114.github.io/2018/01/20/2018.1.20/index.html">
+<meta property="og:site_name" content="Eden&#39;s Blog">
+<meta property="og:description" content="#后缀数组SA(Suffix Array) S:给定字符串Suffix:从S[i]位开始的后缀SA:Suffix在字典序下的数组Rank:名词数组S    : a a b a a a a bIndex: 1 2 3 4 5 6 7 8 Suffix[i]:1: a a b a a a a b2: a b a a a a b3: b a a a a b4: a a a a b5: a a a b6:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-20T08:26:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018-1-20">
+<meta name="twitter:description" content="#后缀数组SA(Suffix Array) S:给定字符串Suffix:从S[i]位开始的后缀SA:Suffix在字典序下的数组Rank:名词数组S    : a a b a a a a bIndex: 1 2 3 4 5 6 7 8 Suffix[i]:1: a a b a a a a b2: a b a a a a b3: b a a a a b4: a a a a b5: a a a b6:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://eden1114.github.io/2018/01/20/2018.1.20/"/>
+
+
+
+
+
+  <title>2018-1-20 | Eden's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </head>
 
- 	<body>
-	  <nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">菜单</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">RTFSC</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                
-                <li>
-                    <a href="/" title="">
-                    <i class="fa fa-home"></i>首页
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/archives" title="">
-                    <i class="fa fa-list"></i>归档
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/about" title="">
-                    <i class="fa fa-info-circle"></i>关于
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/atom.xml" title="这是一个订阅源">
-                    <i class="fa fa-rss"></i>RSS
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eden's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">Read The Fucking source code.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
 
-	  <div class="container" >
-	    <div class="row">
-	
-	<div class="col-md-9 center-content">
-	
 
-		<div class="content">
-			<!-- index -->
-		   
 
-			  		<h2>2018-1-20</h2>
-					
-					<div>
-						<span class="post-time">2018-01-20 09:09:48</span>
-					</div>	
-					
+ </div>
+    </header>
 
-					<div class="article-content">
-						<p>#后缀数组SA(Suffix Array)</p>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/20/2018.1.20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018-1-20</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T09:09:48+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#后缀数组SA(Suffix Array)</p>
 <p>S:给定字符串<br>Suffix:从S[i]位开始的后缀<br>SA:Suffix在字典序下的数组<br>Rank:名词数组<br>S    : a a b a a a a b<br>Index: 1 2 3 4 5 6 7 8</p>
 <p>Suffix[i]:<br>1: a a b a a a a b<br>2: a b a a a a b<br>3: b a a a a b<br>4: a a a a b<br>5: a a a b<br>6: a a b<br>7: a b<br>8: b</p>
 <p>字典序：<br>1: 4: a a a a b<br>2: 5: a a a b<br>3: 6: a a b<br>4: 1: a a b a a a a b<br>5: 7: a b<br>6: 2: a b a a a a b<br>7: 8: b<br>8: 3: b a a a a b</p>
@@ -144,57 +361,318 @@
 <p>测试代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  LL long long</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">100010</span>;</div><div class="line"><span class="comment">//以下为倍增算法求后缀数组</span></div><div class="line"><span class="keyword">int</span> wa[MAXN],wb[MAXN],wv[MAXN],Ws[MAXN];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> *r,<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> l)</span></span></div><div class="line"><span class="function"></span>&#123;<span class="keyword">return</span> r[a]==r[b]&amp;&amp;r[a+l]==r[b+l];&#125;</div><div class="line"><span class="comment">/**&lt; 传入参数：str,sa,len+1,ASCII_MAX+1 */</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">da</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> r[],<span class="keyword">int</span> sa[],<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,p,*x=wa,*y=wb,*t;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;m; i++) Ws[i]=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) Ws[x[i]=r[i]]++;<span class="comment">//以字符的ascii码为下标</span></div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;m; i++) Ws[i]+=Ws[i<span class="number">-1</span>];</div><div class="line">    <span class="keyword">for</span>(i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) sa[--Ws[x[i]]]=i;</div><div class="line">    <span class="comment">/*cout&lt;&lt;"SA"&lt;&lt;endl;;</span></div><div class="line"><span class="comment">    for(int i=0;i&lt;n+1;i++)cout&lt;&lt;sa[i]&lt;&lt;' ';*/</span></div><div class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>,p=<span class="number">1</span>; p&lt;n; j*=<span class="number">2</span>,m=p)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(p=<span class="number">0</span>,i=n-j; i&lt;n; i++) y[p++]=i;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) <span class="keyword">if</span>(sa[i]&gt;=j) y[p++]=sa[i]-j;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) wv[i]=x[y[i]];</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;m; i++) Ws[i]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) Ws[wv[i]]++;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;m; i++) Ws[i]+=Ws[i<span class="number">-1</span>];</div><div class="line">        <span class="keyword">for</span>(i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) sa[--Ws[wv[i]]]=y[i];</div><div class="line">        <span class="keyword">for</span>(t=x,x=y,y=t,p=<span class="number">1</span>,x[sa[<span class="number">0</span>]]=<span class="number">0</span>,i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">            x[sa[i]]=cmp(y,sa[i<span class="number">-1</span>],sa[i],j)?p<span class="number">-1</span>:p++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> sa[MAXN],Rank[MAXN],height[MAXN];</div><div class="line"><span class="comment">//求height数组</span></div><div class="line"><span class="comment">/**&lt; str,sa,len */</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calheight</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *r,<span class="keyword">int</span> *sa,<span class="keyword">int</span> n)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++) Rank[sa[i]]=i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; height[Rank[i++]]=k)</div><div class="line">        <span class="keyword">for</span>(k?k--:<span class="number">0</span>,j=sa[Rank[i]<span class="number">-1</span>]; r[i+k]==r[j+k]; k++);</div><div class="line">    <span class="comment">// Unified</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;--i) ++sa[i],Rank[i]=Rank[i<span class="number">-1</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">char</span> str[MAXN];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s"</span>,str)!=EOF)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> len=<span class="built_in">strlen</span>(str);</div><div class="line">        da(str,sa,len+<span class="number">1</span>,<span class="number">130</span>);</div><div class="line">        calheight(str,sa,len);</div><div class="line">        <span class="built_in">puts</span>(<span class="string">"--------------All Suffix--------------"</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d:\t"</span>,i);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>; j&lt;len; ++j)</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>,str[j]);</div><div class="line">            <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">        <span class="built_in">puts</span>(<span class="string">"-------------After sort---------------"</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"sa[%2d ] = %2d\t"</span>,i,sa[i]);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=sa[i]<span class="number">-1</span>; j&lt;len; ++j)</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>,str[j]);</div><div class="line">            <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">        <span class="built_in">puts</span>(<span class="string">"---------------Height-----------------"</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"height[%2d ]=%2d \n"</span>,i,height[i]);</div><div class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">        <span class="built_in">puts</span>(<span class="string">"----------------Rank------------------"</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"Rank[%2d ] = %2d\n"</span>,i,Rank[i]);</div><div class="line">        <span class="built_in">puts</span>(<span class="string">"------------------END-----------------"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// aabaaaab</span></div><div class="line"><span class="comment">// --------------All Suffix--------------</span></div><div class="line"><span class="comment">// 1:	aabaaaab</span></div><div class="line"><span class="comment">// 2:	abaaaab</span></div><div class="line"><span class="comment">// 3:	baaaab</span></div><div class="line"><span class="comment">// 4:	aaaab</span></div><div class="line"><span class="comment">// 5:	aaab</span></div><div class="line"><span class="comment">// 6:	aab</span></div><div class="line"><span class="comment">// 7:	ab</span></div><div class="line"><span class="comment">// 8:	b</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// -------------After sort---------------</span></div><div class="line"><span class="comment">// sa[ 1 ] =  4	aaaab</span></div><div class="line"><span class="comment">// sa[ 2 ] =  5	aaab</span></div><div class="line"><span class="comment">// sa[ 3 ] =  6	aab</span></div><div class="line"><span class="comment">// sa[ 4 ] =  1	aabaaaab</span></div><div class="line"><span class="comment">// sa[ 5 ] =  7	ab</span></div><div class="line"><span class="comment">// sa[ 6 ] =  2	abaaaab</span></div><div class="line"><span class="comment">// sa[ 7 ] =  8	b</span></div><div class="line"><span class="comment">// sa[ 8 ] =  3	baaaab</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// ---------------Height-----------------</span></div><div class="line"><span class="comment">// height[ 1 ]= 0</span></div><div class="line"><span class="comment">// height[ 2 ]= 3</span></div><div class="line"><span class="comment">// height[ 3 ]= 2</span></div><div class="line"><span class="comment">// height[ 4 ]= 3</span></div><div class="line"><span class="comment">// height[ 5 ]= 1</span></div><div class="line"><span class="comment">// height[ 6 ]= 2</span></div><div class="line"><span class="comment">// height[ 7 ]= 0</span></div><div class="line"><span class="comment">// height[ 8 ]= 1</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// ----------------Rank------------------</span></div><div class="line"><span class="comment">// Rank[ 1 ] =  4</span></div><div class="line"><span class="comment">// Rank[ 2 ] =  6</span></div><div class="line"><span class="comment">// Rank[ 3 ] =  8</span></div><div class="line"><span class="comment">// Rank[ 4 ] =  1</span></div><div class="line"><span class="comment">// Rank[ 5 ] =  2</span></div><div class="line"><span class="comment">// Rank[ 6 ] =  3</span></div><div class="line"><span class="comment">// Rank[ 7 ] =  5</span></div><div class="line"><span class="comment">// Rank[ 8 ] =  7</span></div><div class="line"><span class="comment">// ------------------END-----------------</span></div></pre></td></tr></table></figure></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuffixArray</span></span></div><div class="line"><span class="class">&#123;</span>  </div><div class="line">    <span class="keyword">int</span> s[maxn];      <span class="comment">// 原始字符数组（最后一个字符应必须是0，而前面的字符必须非0）  </span></div><div class="line">    <span class="keyword">int</span> sa[maxn];     <span class="comment">// 后缀数组</span></div><div class="line">    <span class="keyword">int</span> rank[maxn];   <span class="comment">// 名次数组. rank[0]一定是n-1，即最后一个字符  </span></div><div class="line">    <span class="keyword">int</span> height[maxn]; <span class="comment">// height数组  </span></div><div class="line">    <span class="keyword">int</span> t[maxn], t2[maxn], c[maxn]; <span class="comment">//辅助数组  </span></div><div class="line">    <span class="keyword">int</span> n; <span class="comment">// 字符个数  </span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span>  </span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">        n = <span class="number">0</span>;  </div><div class="line">        <span class="built_in">memset</span>(sa, <span class="number">0</span>, <span class="keyword">sizeof</span>(sa));  </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// m为最大字符值加1。调用之前需设置好s和n  </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build_sa</span><span class="params">(<span class="keyword">int</span> m)</span>  </span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">        <span class="keyword">int</span> i, *x = t, *y = t2;  </div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; i++) c[i] = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) c[x[i] = s[i]]++;  </div><div class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; m; i++) c[i] += c[i<span class="number">-1</span>];  </div><div class="line">        <span class="keyword">for</span>(i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) sa[--c[x[i]]] = i;  </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; k &lt;&lt;= <span class="number">1</span>)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">int</span> p = <span class="number">0</span>;  </div><div class="line">            <span class="keyword">for</span>(i = n-k; i &lt; n; i++) y[p++] = i;  </div><div class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) <span class="keyword">if</span>(sa[i] &gt;= k) y[p++] = sa[i]-k;  </div><div class="line"></div><div class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; i++) c[i] = <span class="number">0</span>;  </div><div class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) c[x[y[i]]]++;  </div><div class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; m; i++) c[i] += c[i<span class="number">-1</span>];  </div><div class="line">            <span class="keyword">for</span>(i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) sa[--c[x[y[i]]]] = y[i];  </div><div class="line"></div><div class="line">            swap(x, y);  </div><div class="line">            p = <span class="number">1</span>;  </div><div class="line">            x[sa[<span class="number">0</span>]] = <span class="number">0</span>;  </div><div class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; n; i++)  </div><div class="line">                x[sa[i]] = y[sa[i<span class="number">-1</span>]]==y[sa[i]] &amp;&amp; y[sa[i<span class="number">-1</span>]+k]==y[sa[i]+k] ? p<span class="number">-1</span> : p++;  </div><div class="line">            <span class="keyword">if</span>(p &gt;= n) <span class="keyword">break</span>;  </div><div class="line">            m = p;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build_height</span><span class="params">()</span>  </span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">        <span class="keyword">int</span> i, j, k = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) rank[sa[i]] = i;  </div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)  </div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">if</span>(k) k--;  </div><div class="line">            <span class="keyword">int</span> j = sa[rank[i]<span class="number">-1</span>];  </div><div class="line">            <span class="keyword">while</span>(s[i+k] == s[j+k]) k++;  </div><div class="line">            height[rank[i]] = k;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
-					</div>
+      
+    </div>
+    
+    
+    
 
-			  <!-- about -->
-			  
-		</div>
+    
 
-		<!-- pagination -->
-	  
+    
 
-		<div class="comment-section">
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/后缀数组/" rel="tag"># 后缀数组</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/16/Mysql/" rel="next" title="Mysql">
+                <i class="fa fa-chevron-left"></i> Mysql
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/20/RMQ/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
   
   
+  
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/profile.jpg"
+               alt="YangYu" />
+          <p class="site-author-name" itemprop="name">YangYu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Read The Fucking source code.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YangYu</span>
 </div>
-	</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
 
 	
 
-</div>
 
 
-		<footer>
-			
 
-<p>
-  由 <a href="https://hexo.io">hexo</a> 强力驱动 | 搭载 <a href="https://github.com/wayou/hexo-theme-material">material</a> 主题
-</p>
-<p>
-  &copy; 2018 <a href="http://eden1114.github.io"> YangYu </a>
-</p>
-<a id="gotop" href="#" title="back to top"><i class="mdi-hardware-keyboard-arrow-up"></i></a>
 
-		</footer>
-	  </div>
+  
 
-		<!-- <script src="/libs/bs/js/bootstrap.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script>(typeof $().modal == 'function')|| document.write('<script src="/libs/bs/js/bootstrap.min.js" type="text/javascript"><\/script>')</script>
 
-		<!-- material design -->
-		<!-- <script src="/libs/bs-material/js/ripples.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/ripples.min.js"></script>
-		<!-- <script src="/libs/bs-material/js/material.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/material.min.js"></script>
-		<!-- toc -->
-		<!-- <script src="/libs/tocify/jquery-ui.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-		<script src="/libs/tocify/jquery.tocify.custom.js"></script>
 
-		<script src="/js/main.js"></script>
 
-	</body>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
 </html>

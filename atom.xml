@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>RTFSC</title>
+  <title>Eden&#39;s Blog</title>
   
-  
+  <subtitle>Read The Fucking source code.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eden1114.github.io/"/>
