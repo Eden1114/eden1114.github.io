@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://eden1114.github.io/2018/01/20/SuffixArray/</loc>
+    
+    <lastmod>2018-05-28T03:27:52.494Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://eden1114.github.io/2018/01/20/RMQ/</loc>
     
-    <lastmod>2018-05-28T02:49:24.316Z</lastmod>
+    <lastmod>2018-05-28T03:27:23.512Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://eden1114.github.io/2017/11/01/Python%E8%AF%AD%E6%B3%95%E7%B3%96/</loc>
     
     <lastmod>2018-02-15T14:12:59.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://eden1114.github.io/2018/01/20/2018.1.20/</loc>
-    
-    <lastmod>2018-01-20T08:26:49.000Z</lastmod>
     
   </url>
   

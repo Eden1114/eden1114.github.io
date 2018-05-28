@@ -4,8 +4,25 @@
 
     
   <url>
+    <loc>http://eden1114.github.io/2018/01/20/SuffixArray/</loc>
+    <lastmod>2018-05-28T03:27:52.494Z</lastmod>
+    <data>
+        <display>
+        <title>后缀数组</title>
+        <pubTime>2018-01-20T01:09:48.000Z</pubTime>
+        
+        <tag>ACM 后缀数组 SA</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://eden1114.github.io/2018/01/20/RMQ/</loc>
-    <lastmod>2018-05-28T02:49:24.316Z</lastmod>
+    <lastmod>2018-05-28T03:27:23.512Z</lastmod>
     <data>
         <display>
         <title>RMQ算法</title>
@@ -91,23 +108,6 @@
         <title></title>
         <pubTime>2017-11-01T09:46:04.000Z</pubTime>
         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://eden1114.github.io/2018/01/20/2018.1.20/</loc>
-    <lastmod>2018-01-20T08:26:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>2018-1-20</title>
-        <pubTime>2018-01-20T01:09:48.000Z</pubTime>
-        
-        <tag>后缀数组</tag>
-         
          
            
         </display>
