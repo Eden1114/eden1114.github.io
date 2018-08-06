@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ACM RMQ 线段树," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -97,18 +97,21 @@
 
 
 
-<meta name="description" content="RMQ算法Range Minimum/Maximum Query应用：求区间最值 求区间最小值的模板1234567891011121314151617181920212223242526272829303132333435363738const int MAX_N = 1 &amp;lt;&amp;lt; 17;int n;int dat[2 *MAX_N - 1];void init(int n_) &amp;#123">
-<meta name="keywords" content="ACM RMQ 线段树">
+<meta name="description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RMQ算法">
-<meta property="og:url" content="http://eden1114.github.io/2018/01/20/RMQ/index.html">
+<meta property="og:title" content="DDPG算法总结">
+<meta property="og:url" content="http://eden1114.github.io/2018/08/06/DDPG/index.html">
 <meta property="og:site_name" content="Eden&#39;s Blog">
-<meta property="og:description" content="RMQ算法Range Minimum/Maximum Query应用：求区间最值 求区间最小值的模板1234567891011121314151617181920212223242526272829303132333435363738const int MAX_N = 1 &amp;lt;&amp;lt; 17;int n;int dat[2 *MAX_N - 1];void init(int n_) &amp;#123">
+<meta property="og:description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-28T03:27:23.513Z">
+<meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/network.png">
+<meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/softupdate.png">
+<meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/ddpg.jpg">
+<meta property="og:updated_time" content="2018-08-06T10:37:50.466Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RMQ算法">
-<meta name="twitter:description" content="RMQ算法Range Minimum/Maximum Query应用：求区间最值 求区间最小值的模板1234567891011121314151617181920212223242526272829303132333435363738const int MAX_N = 1 &amp;lt;&amp;lt; 17;int n;int dat[2 *MAX_N - 1];void init(int n_) &amp;#123">
+<meta name="twitter:title" content="DDPG算法总结">
+<meta name="twitter:description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
+<meta name="twitter:image" content="http://eden1114.github.io/2018/08/06/DDPG/network.png">
 
 
 
@@ -137,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://eden1114.github.io/2018/01/20/RMQ/"/>
+  <link rel="canonical" href="http://eden1114.github.io/2018/08/06/DDPG/"/>
 
 
 
 
 
-  <title>RMQ算法 | Eden's Blog</title>
+  <title>DDPG算法总结 | Eden's Blog</title>
   
 
 
@@ -276,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/20/RMQ/">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/06/DDPG/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangYu">
@@ -293,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RMQ算法</h1>
+          <h1 class="post-title" itemprop="name headline">DDPG算法总结</h1>
         
 
         <div class="post-meta">
@@ -305,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T11:30:47+08:00">
-                2018-01-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T15:01:10+08:00">
+                2018-08-06
               </time>
             
 
@@ -343,8 +346,65 @@
       
 
       
-        <h1 id="RMQ算法"><a href="#RMQ算法" class="headerlink" title="RMQ算法"></a>RMQ算法</h1><p>Range Minimum/Maximum Query<br>应用：求区间最值</p>
-<h2 id="求区间最小值的模板"><a href="#求区间最小值的模板" class="headerlink" title="求区间最小值的模板"></a>求区间最小值的模板</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1</span> &lt;&lt; <span class="number">17</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> dat[<span class="number">2</span> *MAX_N - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n_)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//为了便于实现，把元素个数扩展到2^n的形式</span></span><br><span class="line">    n = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n &lt; n_) n &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">2</span> * n - <span class="number">1</span>;;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dat[i] = INT_MAX; <span class="comment">//初始化的值应该做到对操作无影响</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把第k个值设为a</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//叶子结点</span></span><br><span class="line">    k += n - <span class="number">1</span>;</span><br><span class="line">    dat[k] = a;</span><br><span class="line">    <span class="comment">//向上更新</span></span><br><span class="line">    <span class="keyword">while</span>(k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        k = k / <span class="number">2</span>;</span><br><span class="line">        dat[k] = min(dat[<span class="number">2</span> * k], dat[<span class="number">2</span> * k + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求[a,b)的最小值</span></span><br><span class="line"><span class="comment">//k是节点编号，l,r表示这个节点对应的是[l,r)区间</span></span><br><span class="line"><span class="comment">//在外部调用时，用query(a, b, 0, 0, n)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> k, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a &gt;= r || b &lt;= l) <span class="keyword">return</span> INT_MAX;</span><br><span class="line">    <span class="keyword">int</span> (a &lt;= l &amp;&amp; r &lt;= b) <span class="keyword">return</span> dat[k];</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> vl = query(a, b, k * <span class="number">2</span> + <span class="number">1</span>, l, (l + r) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">int</span> vr = query(a, b, k * <span class="number">2</span> + <span class="number">2</span>, (l + r) / <span class="number">2</span>, r);</span><br><span class="line">        <span class="keyword">return</span> min(vl, vr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="Deep-Reinforcement-Learning-DDPG"><a href="#Deep-Reinforcement-Learning-DDPG" class="headerlink" title="Deep Reinforcement Learning/DDPG"></a>Deep Reinforcement Learning/DDPG</h1><h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a>背景描述</h2><p>RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就是使用这样的策略，可以让agent在特定环境中的行为获得最大的奖励值，从而实现其任务目标。</p>
+<p>行为(action)可以简单分为：</p>
+<ul>
+<li><p>连续的：如赛车游戏中的方向盘角度、油门、刹车控制信号，机器人的关节伺服电机控制信号等</p>
+</li>
+<li><p>离散的：如围棋、贪吃蛇游戏。 Alpha Go就是一个典型的离散行为agent。</p>
+</li>
+</ul>
+<p>DDPG是针对连续行为的策略学习方法。</p>
+<h2 id="DDPG"><a href="#DDPG" class="headerlink" title="DDPG"></a>DDPG</h2><p>Deepmind在2016年提出DDPG，全称是：Deep Deterministic Policy Gradient。是将深度学习神经网络融合进DPG的策略学习方法。<br>相对于DPG的核心改进是：采用 <strong>卷积神经网络</strong>作为策略函数μ和Q函数的模拟，即策略网络和Q网络；然后使用<strong>深度学习方法</strong>来训练上述神经网络。</p>
+<p>Q函数的实现和训练方法，采用了Deepmind 2015年发表的DQN方法。</p>
+<h3 id="online网络与target网络"><a href="#online网络与target网络" class="headerlink" title="online网络与target网络"></a>online网络与target网络</h3><p>以往的实践证明，如果只使用单个”Q神经网络”的算法，学习过程很不稳定，因为Q网络的参数在频繁gradient update的同时，又用于计算Q网络和策略网络的gradient。</p>
+<p>基于此，DDPG分别为策略网络、Q网络各创建两个神经网络拷贝,一个叫做online，一个叫做target:</p>
+<p><img src="/2018/08/06/DDPG/./network.png" alt="network"></p>
+<p>在训练完一个mini-batch的数据之后，通过随机梯度下降更新online网络的参数，然后再通过soft update算法更新 target 网络的参数。soft update是一种running average的算法：</p>
+<p><img src="/2018/08/06/DDPG/./softupdate.png" alt="softupdate"></p>
+<p>也就是每次target网络参数的更新，是target网络参数和online网络参数的线性组合。这样做的优点和缺点都很明显。</p>
+<p>优点：target网络参数变化小，用于在训练过程中计算online网络的gradient，比较稳定，训练易于收敛。  </p>
+<p>代价：参数变化小，学习过程变慢。</p>
+<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img src="/2018/08/06/DDPG/./ddpg.jpg" alt="ddpg algorithm">  </p>
+<p>首先代码的第一部分是初始化。  </p>
+<ul>
+<li>初始化actor\critic的 online 神经网络参数: θQ 和 θμ；  </li>
+<li>将online网络的参数拷贝给对应的target网络参数：θQ′←θQ,θμ′←θμ ;  </li>
+<li><p>初始化replay memory buffer R;</p>
+</li>
+<li><p>然后对每个回合进行训练。（第一个for）  </p>
+<ul>
+<li>每个回合要先初始化随机噪声N(图中的希腊字母)  </li>
+<li>获得初始的状态s1</li>
+<li>然后对每一个time step进行训练（第二个for）<ul>
+<li>先从根据online策略网络和噪声获得输出的动作at，at=μ(st|θμ)+Nt</li>
+<li>执行该动作，从环境中获取reward和下一个状态的St+1</li>
+<li>将这个动作转换存储到经验池（memery buffer）R中</li>
+<li>从R中随机采样N个transition数据即 (st,at,rt，st+1)，作为训练online-actor,online-critic网络的训练数据。</li>
+<li>根据target网络获得估计的Q值，定义loss为MSE: mean squared error：<br>L=(1/N)∑i(yi−Q(si,ai|θQ))^2(见上图吧)用这个Q值更新online-critic网络(ps:这里可以看成监督学习的方法，yi是标签）</li>
+<li>基于标准的bp使用梯度下降的策略更新online-actor网络</li>
+<li>使用soft update的方法更新target-critic,target-actor网络</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>有两点值得注意：</p>
+<ul>
+<li><p>yi 的计算，使用的是 target 策略网络μ′ 和 target Q 网络Q′,这样做是为了Q网络参数的学习过程更加稳定，易于收敛。</p>
+</li>
+<li><p>这个标签本身依赖于我们正在学习的target网络，这是区别于监督式学习的地方。update online Q： 采用Adam optimizer更新θQ;</p>
+</li>
+</ul>
+<h2 id="DDPG对于DPG的关键改进"><a href="#DDPG对于DPG的关键改进" class="headerlink" title="DDPG对于DPG的关键改进"></a>DDPG对于DPG的关键改进</h2><ol>
+<li><p>使用卷积神经网络来模拟策略函数和Q函数，并用深度学习的方法来训练，证明了在RL方法中，非线性模拟函数的准确性和高性能、可收敛；而DPG中，可以看成使用线性回归的机器学习方法：使用带参数的线性函数来模拟策略函数和Q函数，然后使用线性回归的方法进行训练。</p>
+</li>
+<li><p>experience replay memory的使用：actor同环境交互时，产生的transition数据序列是在时间上高度关联(correlated)的，如果这些数据序列直接用于训练，会导致神经网络的overfit，不易收敛。DDPG的actor将transition数据先存入experience replay buffer, 然后在训练时，从experience replay buffer中随机采样mini-batch数据，这样采样得到的数据可以认为是无关联的。</p>
+</li>
+<li><p>target网络和online网络的使用， 使的学习过程更加稳定，收敛更有保障。</p>
+</li>
+</ol>
+<p>##公式的推导<br>关于公式的推导，因为公式不宜输入，建议看论文。</p>
 
       
     </div>
@@ -360,12 +420,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ACM-RMQ-线段树/" rel="tag"># ACM RMQ 线段树</a>
-          
-        </div>
-      
 
       
       
@@ -375,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/20/SuffixArray/" rel="next" title="后缀数组">
-                <i class="fa fa-chevron-left"></i> 后缀数组
+              <a href="/2018/05/28/2018-05-28/" rel="next" title="现在要做的">
+                <i class="fa fa-chevron-left"></i> 现在要做的
               </a>
             
           </div>
@@ -385,8 +439,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/22/2018-1-22/" rel="prev" title="组合游戏 - SG函数和SG定理">
-                组合游戏 - SG函数和SG定理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/06/pictures/Office/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -558,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RMQ算法"><span class="nav-number">1.</span> <span class="nav-text">RMQ算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#求区间最小值的模板"><span class="nav-number">1.1.</span> <span class="nav-text">求区间最小值的模板</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Reinforcement-Learning-DDPG"><span class="nav-number">1.</span> <span class="nav-text">Deep Reinforcement Learning/DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG"><span class="nav-number">1.2.</span> <span class="nav-text">DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#online网络与target网络"><span class="nav-number">1.2.1.</span> <span class="nav-text">online网络与target网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法流程"><span class="nav-number">1.3.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG对于DPG的关键改进"><span class="nav-number">1.4.</span> <span class="nav-text">DDPG对于DPG的关键改进</span></a></li></ol></li></ol></div>
             
 
           </div>

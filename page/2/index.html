@@ -276,6 +276,397 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/20/SuffixArray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/20/SuffixArray/" itemprop="url">后缀数组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T09:09:48+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#后缀数组SA(Suffix Array)</p>
+<p>S:给定字符串<br>Suffix:从S[i]位开始的后缀<br>SA:Suffix在字典序下的数组<br>Rank:名词数组<br>S    : a a b a a a a b<br>Index: 1 2 3 4 5 6 7 8</p>
+<p>Suffix[i]:<br>1: a a b a a a a b<br>2: a b a a a a b<br>3: b a a a a b<br>4: a a a a b<br>5: a a a b<br>6: a a b<br>7: a b<br>8: b</p>
+<p>字典序：<br>1: 4: a a a a b<br>2: 5: a a a b<br>3: 6: a a b<br>4: 1: a a b a a a a b<br>5: 7: a b<br>6: 2: a b a a a a b<br>7: 8: b<br>8: 3: b a a a a b</p>
+<p>SA:  4 5 6 1 7 2 8 3<br>Rank:4 6 8 1 2 3 5 7</p>
+<p><img src="/2018/01/20/SuffixArray/" alt="./pictures/Rank.jpg"></p>
+<p>后缀数组是“排第几的是谁?”， 名次数组是“你排第几?”。<br>i -&gt; Rank[i]和i -&gt; SA[i]是互为反函数的。</p>
+<p>##怎么求给定字符串的后缀数组？</p>
+<p>###1.倍增法<br>    涉及到了基数排序、桶排序。详见代码。<br>    <img src="/2018/01/20/SuffixArray/" alt="./pictures/SA_Sort.jpg"></p>
+<p>###2.DC3</p>
+<p>##应用</p>
+<p>###快速比较一个串和反串的字典序<br>cabc<br>cbac<br>构造S:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cabc#cbac</span><br><span class="line">↑    ↑</span><br><span class="line">i    j</span><br></pre></td></tr></table></figure></p>
+<p>比较这两个的SA[i] SA[j]的大小即可。</p>
+<p>###求最长公共前缀长度 LCP<br>HEIGHT数组<br>Height[i] : 表示Suffix相邻的两个后缀的最长公共前缀。Suffix[SA[i]]和Suffix[SA[i - 1]]的最长公共前缀。<br><img src="/2018/01/20/SuffixArray/" alt="./pictures/SA_Height.jpg"></p>
+<p>##代码</p>
+<p>测试代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LL long long</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">100010</span>;</span><br><span class="line"><span class="comment">//以下为倍增算法求后缀数组</span></span><br><span class="line"><span class="keyword">int</span> wa[MAXN],wb[MAXN],wv[MAXN],Ws[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> *r,<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> l)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="keyword">return</span> r[a]==r[b]&amp;&amp;r[a+l]==r[b+l];&#125;</span><br><span class="line"><span class="comment">/**&lt; 传入参数：str,sa,len+1,ASCII_MAX+1 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">da</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> r[],<span class="keyword">int</span> sa[],<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,p,*x=wa,*y=wb,*t;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;m; i++) Ws[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) Ws[x[i]=r[i]]++;<span class="comment">//以字符的ascii码为下标</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;m; i++) Ws[i]+=Ws[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) sa[--Ws[x[i]]]=i;</span><br><span class="line">    <span class="comment">/*cout&lt;&lt;"SA"&lt;&lt;endl;;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;n+1;i++)cout&lt;&lt;sa[i]&lt;&lt;' ';*/</span></span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>,p=<span class="number">1</span>; p&lt;n; j*=<span class="number">2</span>,m=p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(p=<span class="number">0</span>,i=n-j; i&lt;n; i++) y[p++]=i;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) <span class="keyword">if</span>(sa[i]&gt;=j) y[p++]=sa[i]-j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) wv[i]=x[y[i]];</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;m; i++) Ws[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) Ws[wv[i]]++;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;m; i++) Ws[i]+=Ws[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) sa[--Ws[wv[i]]]=y[i];</span><br><span class="line">        <span class="keyword">for</span>(t=x,x=y,y=t,p=<span class="number">1</span>,x[sa[<span class="number">0</span>]]=<span class="number">0</span>,i=<span class="number">1</span>; i&lt;n; i++)</span><br><span class="line">            x[sa[i]]=cmp(y,sa[i<span class="number">-1</span>],sa[i],j)?p<span class="number">-1</span>:p++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> sa[MAXN],Rank[MAXN],height[MAXN];</span><br><span class="line"><span class="comment">//求height数组</span></span><br><span class="line"><span class="comment">/**&lt; str,sa,len */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calheight</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *r,<span class="keyword">int</span> *sa,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++) Rank[sa[i]]=i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; height[Rank[i++]]=k)</span><br><span class="line">        <span class="keyword">for</span>(k?k--:<span class="number">0</span>,j=sa[Rank[i]<span class="number">-1</span>]; r[i+k]==r[j+k]; k++);</span><br><span class="line">    <span class="comment">// Unified</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;--i) ++sa[i],Rank[i]=Rank[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s"</span>,str)!=EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> len=<span class="built_in">strlen</span>(str);</span><br><span class="line">        da(str,sa,len+<span class="number">1</span>,<span class="number">130</span>);</span><br><span class="line">        calheight(str,sa,len);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"--------------All Suffix--------------"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d:\t"</span>,i);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>; j&lt;len; ++j)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>,str[j]);</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"-------------After sort---------------"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"sa[%2d ] = %2d\t"</span>,i,sa[i]);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=sa[i]<span class="number">-1</span>; j&lt;len; ++j)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>,str[j]);</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"---------------Height-----------------"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"height[%2d ]=%2d \n"</span>,i,height[i]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"----------------Rank------------------"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=len; ++i)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"Rank[%2d ] = %2d\n"</span>,i,Rank[i]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"------------------END-----------------"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// aabaaaab</span></span><br><span class="line"><span class="comment">// --------------All Suffix--------------</span></span><br><span class="line"><span class="comment">// 1:	aabaaaab</span></span><br><span class="line"><span class="comment">// 2:	abaaaab</span></span><br><span class="line"><span class="comment">// 3:	baaaab</span></span><br><span class="line"><span class="comment">// 4:	aaaab</span></span><br><span class="line"><span class="comment">// 5:	aaab</span></span><br><span class="line"><span class="comment">// 6:	aab</span></span><br><span class="line"><span class="comment">// 7:	ab</span></span><br><span class="line"><span class="comment">// 8:	b</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// -------------After sort---------------</span></span><br><span class="line"><span class="comment">// sa[ 1 ] =  4	aaaab</span></span><br><span class="line"><span class="comment">// sa[ 2 ] =  5	aaab</span></span><br><span class="line"><span class="comment">// sa[ 3 ] =  6	aab</span></span><br><span class="line"><span class="comment">// sa[ 4 ] =  1	aabaaaab</span></span><br><span class="line"><span class="comment">// sa[ 5 ] =  7	ab</span></span><br><span class="line"><span class="comment">// sa[ 6 ] =  2	abaaaab</span></span><br><span class="line"><span class="comment">// sa[ 7 ] =  8	b</span></span><br><span class="line"><span class="comment">// sa[ 8 ] =  3	baaaab</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// ---------------Height-----------------</span></span><br><span class="line"><span class="comment">// height[ 1 ]= 0</span></span><br><span class="line"><span class="comment">// height[ 2 ]= 3</span></span><br><span class="line"><span class="comment">// height[ 3 ]= 2</span></span><br><span class="line"><span class="comment">// height[ 4 ]= 3</span></span><br><span class="line"><span class="comment">// height[ 5 ]= 1</span></span><br><span class="line"><span class="comment">// height[ 6 ]= 2</span></span><br><span class="line"><span class="comment">// height[ 7 ]= 0</span></span><br><span class="line"><span class="comment">// height[ 8 ]= 1</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// ----------------Rank------------------</span></span><br><span class="line"><span class="comment">// Rank[ 1 ] =  4</span></span><br><span class="line"><span class="comment">// Rank[ 2 ] =  6</span></span><br><span class="line"><span class="comment">// Rank[ 3 ] =  8</span></span><br><span class="line"><span class="comment">// Rank[ 4 ] =  1</span></span><br><span class="line"><span class="comment">// Rank[ 5 ] =  2</span></span><br><span class="line"><span class="comment">// Rank[ 6 ] =  3</span></span><br><span class="line"><span class="comment">// Rank[ 7 ] =  5</span></span><br><span class="line"><span class="comment">// Rank[ 8 ] =  7</span></span><br><span class="line"><span class="comment">// ------------------END-----------------</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuffixArray</span></span></span><br><span class="line"><span class="class">&#123;</span>  </span><br><span class="line">    <span class="keyword">int</span> s[maxn];      <span class="comment">// 原始字符数组（最后一个字符应必须是0，而前面的字符必须非0）  </span></span><br><span class="line">    <span class="keyword">int</span> sa[maxn];     <span class="comment">// 后缀数组</span></span><br><span class="line">    <span class="keyword">int</span> rank[maxn];   <span class="comment">// 名次数组. rank[0]一定是n-1，即最后一个字符  </span></span><br><span class="line">    <span class="keyword">int</span> height[maxn]; <span class="comment">// height数组  </span></span><br><span class="line">    <span class="keyword">int</span> t[maxn], t2[maxn], c[maxn]; <span class="comment">//辅助数组  </span></span><br><span class="line">    <span class="keyword">int</span> n; <span class="comment">// 字符个数  </span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function">    </span>&#123;  </span><br><span class="line">        n = <span class="number">0</span>;  </span><br><span class="line">        <span class="built_in">memset</span>(sa, <span class="number">0</span>, <span class="keyword">sizeof</span>(sa));  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// m为最大字符值加1。调用之前需设置好s和n  </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build_sa</span><span class="params">(<span class="keyword">int</span> m)</span>  </span></span><br><span class="line"><span class="function">    </span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> i, *x = t, *y = t2;  </span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; i++) c[i] = <span class="number">0</span>;  </span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) c[x[i] = s[i]]++;  </span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; m; i++) c[i] += c[i<span class="number">-1</span>];  </span><br><span class="line">        <span class="keyword">for</span>(i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) sa[--c[x[i]]] = i;  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; k &lt;&lt;= <span class="number">1</span>)  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">int</span> p = <span class="number">0</span>;  </span><br><span class="line">            <span class="keyword">for</span>(i = n-k; i &lt; n; i++) y[p++] = i;  </span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) <span class="keyword">if</span>(sa[i] &gt;= k) y[p++] = sa[i]-k;  </span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; i++) c[i] = <span class="number">0</span>;  </span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) c[x[y[i]]]++;  </span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; m; i++) c[i] += c[i<span class="number">-1</span>];  </span><br><span class="line">            <span class="keyword">for</span>(i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) sa[--c[x[y[i]]]] = y[i];  </span><br><span class="line"></span><br><span class="line">            swap(x, y);  </span><br><span class="line">            p = <span class="number">1</span>;  </span><br><span class="line">            x[sa[<span class="number">0</span>]] = <span class="number">0</span>;  </span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; n; i++)  </span><br><span class="line">                x[sa[i]] = y[sa[i<span class="number">-1</span>]]==y[sa[i]] &amp;&amp; y[sa[i<span class="number">-1</span>]+k]==y[sa[i]+k] ? p<span class="number">-1</span> : p++;  </span><br><span class="line">            <span class="keyword">if</span>(p &gt;= n) <span class="keyword">break</span>;  </span><br><span class="line">            m = p;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build_height</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function">    </span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> i, j, k = <span class="number">0</span>;  </span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++) rank[sa[i]] = i;  </span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">if</span>(k) k--;  </span><br><span class="line">            <span class="keyword">int</span> j = sa[rank[i]<span class="number">-1</span>];  </span><br><span class="line">            <span class="keyword">while</span>(s[i+k] == s[j+k]) k++;  </span><br><span class="line">            height[rank[i]] = k;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/16/Mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/Mysql/" itemprop="url">Mysql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T19:22:35+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#install mysql<br>MacOS下安装<br><code>brew install mysql</code><br><code>mysqladmin -u root -p</code><br><code>mysql -u root -p</code><br>-u 指定用户<br>-p 输入密码</p>
+<p><code>yangyu1114</code></p>
+<p>添加用户<br><code>GRANT USAGE ON *.* TO &#39;user01&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456&#39; WITH GRANT OPTION;</code></p>
+<p>#python<br><code>pip install mysqlclient</code><br><code>pip install mysql-connector-python</code></p>
+<p>##前言</p>
+<p>在Python中如果要连接数据库，不管是MySQL、SQL Server、PostgreSQL亦或是SQLite，使用时都是采用游标的方式，所以就不得不学习Python DB-API。<br>Python所有的数据库接口程序都在一定程度上遵守 Python DB-API 规范。DB-API定义了一系列必须的对象和数据库存取方式，以便为各种底层数据库系统和多种多样的数据库接口程序提供一致的访问接口。由于DB-API 为不同的数据库提供了一致的访问接口， 在不同的数据库之间移植代码成为一件轻松的事情。<br>Python连接数据库流程：</p>
+<p><img src="/2018/01/16/Mysql/./pictures/pyton-dbapi.jpg" alt="python-db-API"></p>
+<p>使用connect创建connection连接<br>connect 方法生成一个 connect 对象, 我们通过这个对象来访问数据库。符合标准的模块都会实现 connect 方法。</p>
+<p>connect 函数的参数如下所示：<br>user Username<br>password Password<br>host Hostname<br>database Database name<br>dsn Data source name<br>数据库连接参数可以以一个 DSN 字符串的形式提供，示例：connect(dsn=’host:MYDB’,user=’root’,password=’ ‘)<br>当然，不同的数据库接口程序可能有些差异，并非都是严格按照规范实现，例如MySQLdb则使用 db 参数而不是规范推荐的 database 参数来表示要访问的数据库：<br>MySQLdb连接时可用参数<br>host: 数据库主机名.默认是用本地主机<br>user: 数据库登陆名.默认是当前用户<br>passwd: 数据库登陆的秘密.默认为空<br>db: 要使用的数据库名.没有默认值<br>port: MySQL服务使用的TCP端口.默认是3306<br>charset: 数据库编码<br>psycopg2连接时可用参数：<br>dbname – 数据库名称 (dsn连接模式)<br>database – 数据库名称<br>user – 用户名<br>password – 密码<br>host – 服务器地址 (如果不提供默认连接Unix Socket)<br>port – 连接端口 (默认5432)<br>其中connect对象又有如下方法:</p>
+<p>close():关闭此connect对象, 关闭后无法再进行操作，除非再次创建连接<br>commit():提交当前事务，如果是支持事务的数据库执行增删改后没有commit则数据库默认回滚<br>rollback():取消当前事务<br>cursor():创建游标对象<br>使用cursor创建游标对象<br>cursor游标对象又有如下属性和方法:<br>常用方法:<br>close():关闭此游标对象<br>fetchone():得到结果集的下一行<br>fetchmany([size = cursor.arraysize]):得到结果集的下几行<br>fetchall():得到结果集中剩下的所有行<br>excute(sql[, args]):执行一个数据库查询或命令<br>excutemany(sql, args):执行多个数据库查询或命令<br>常用属性:<br>connection:创建此游标对象的数据库连接<br>arraysize:使用fetchmany()方法一次取出多少条记录，默认为1<br>lastrowid:相当于PHP的last_inset_id()<br>其他方法：</p>
+<p><strong>iter</strong>()：创建一个可迭代对象（可选）<br>next()：获取结果集的下一行（如果支持迭代的话）<br>nextset()：移到下一个结果集（如果支持的话）<br>callproc(func[,args])：调用一个存储过程<br>setinputsizes(sizes)：设置输入最大值（必须有，但具体实现是可选的）<br>setoutputsizes(sizes[,col])：设置大列 fetch 的最大缓冲区大小<br>其他属性：</p>
+<p>description：返回游标活动状态（包含7个元素的元组）：（name, type_code, display_size, internal_size, precision, scale, null_ok）只有 name 和 type_cose 是必需的<br>rowcount：最近一次 execute() 创建或影响的行数<br>messages：游标执行后数据库返回的信息元组（可选）<br>rownumber：当前结果集中游标所在行的索引（起始行号为 0）<br>DB-API只中的错误定义<br>错误类的层次关系：</p>
+<p>StandardError<br>|<strong>Warning<br>|</strong>Error<br>|<strong>InterfaceError<br>|</strong>DatabaseError<br>|<strong>DataError<br>|</strong>OperationalError<br>|<strong>IntegrityError<br>|</strong>InternalError<br>|<strong>ProgrammingError<br>|</strong>NotSupportedError<br>数据库操作示例</p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line"># *************************************************************</span><br><span class="line">#  Filename @ operatemysql.py</span><br><span class="line">#  Author @ Huoty</span><br><span class="line"># Create date @ 2015-08-16 10:44:34</span><br><span class="line"># Description @</span><br><span class="line"># *************************************************************</span><br><span class="line"></span><br><span class="line">import MySQLdb</span><br><span class="line"></span><br><span class="line"># Script starts from here</span><br><span class="line"></span><br><span class="line"># 连接数据库</span><br><span class="line">db_conn = MySQLdb.connect(host = &apos;localhost&apos;, user= &apos;root&apos;, passwd = &apos;123456&apos;)</span><br><span class="line"></span><br><span class="line"># 如果已经创建了数据库，可以直接用如下方式连接数据库</span><br><span class="line">#db_conn = MySQLdb.connect(host = &quot;localhost&quot;, user = &quot;root&quot;,passwd = &quot;123456&quot;, db = &quot;testdb&quot;)</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">connect方法常用参数:</span><br><span class="line"> host: 数据库主机名.默认是用本地主机</span><br><span class="line"> user: 数据库登陆名.默认是当前用户</span><br><span class="line"> passwd: 数据库登陆的秘密.默认为空</span><br><span class="line"> db: 要使用的数据库名.没有默认值</span><br><span class="line"> port: MySQL服务使用的TCP端口.默认是3306</span><br><span class="line"> charset: 数据库编码</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># 获取操作游标</span><br><span class="line">cursor = db_conn.cursor()</span><br><span class="line"></span><br><span class="line"># 使用 execute 方法执行SQL语句</span><br><span class="line">cursor.execute(&quot;SELECT VERSION()&quot;)</span><br><span class="line"></span><br><span class="line"># 使用 fetchone 方法获取一条数据库。</span><br><span class="line">dbversion = cursor.fetchone()</span><br><span class="line"></span><br><span class="line">print &quot;Database version : %s &quot; % dbversion</span><br><span class="line"></span><br><span class="line"># 创建数据库</span><br><span class="line">cursor.execute(&quot;create database if not exists dbtest&quot;)</span><br><span class="line"></span><br><span class="line"># 选择要操作的数据库</span><br><span class="line">db_conn.select_db(&apos;dbtest&apos;);</span><br><span class="line"></span><br><span class="line"># 创建数据表SQL语句</span><br><span class="line">sql = &quot;&quot;&quot;CREATE TABLE if not exists employee(</span><br><span class="line">   first_name CHAR(20) NOT NULL,</span><br><span class="line">   last_name CHAR(20),</span><br><span class="line">   age INT,</span><br><span class="line">   sex CHAR(1),</span><br><span class="line">   income FLOAT )&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line"> cursor.execute(sql)</span><br><span class="line">except Exception, e:</span><br><span class="line"> # Exception 是所有异常的基类，这里表示捕获所有的异常</span><br><span class="line"> print &quot;Error to create table:&quot;, e</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">sql = &quot;&quot;&quot;INSERT INTO employee(first_name,</span><br><span class="line">   last_name, age, sex, income)</span><br><span class="line">   VALUES (&apos;%s&apos;, &apos;%s&apos;, %d, &apos;%s&apos;, %d)&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># Sex: Male男, Female女</span><br><span class="line"></span><br><span class="line">employees = (</span><br><span class="line">  &#123;&quot;first_name&quot;: &quot;Mac&quot;, &quot;last_name&quot;: &quot;Mohan&quot;, &quot;age&quot;: 20, &quot;sex&quot;: &quot;M&quot;, &quot;income&quot;: 2000&#125;,</span><br><span class="line">  &#123;&quot;first_name&quot;: &quot;Wei&quot;, &quot;last_name&quot;: &quot;Zhu&quot;, &quot;age&quot;: 24, &quot;sex&quot;: &quot;M&quot;, &quot;income&quot;: 7500&#125;,</span><br><span class="line">  &#123;&quot;first_name&quot;: &quot;Huoty&quot;, &quot;last_name&quot;: &quot;Kong&quot;, &quot;age&quot;: 24, &quot;sex&quot;: &quot;M&quot;, &quot;income&quot;: 8000&#125;,</span><br><span class="line">  &#123;&quot;first_name&quot;: &quot;Esenich&quot;, &quot;last_name&quot;: &quot;Lu&quot;, &quot;age&quot;: 22, &quot;sex&quot;: &quot;F&quot;, &quot;income&quot;: 3500&#125;,</span><br><span class="line">  &#123;&quot;first_name&quot;: &quot;Xmin&quot;, &quot;last_name&quot;: &quot;Yun&quot;, &quot;age&quot;: 31, &quot;sex&quot;: &quot;F&quot;, &quot;income&quot;: 9500&#125;,</span><br><span class="line">  &#123;&quot;first_name&quot;: &quot;Yxia&quot;, &quot;last_name&quot;: &quot;Fun&quot;, &quot;age&quot;: 23, &quot;sex&quot;: &quot;M&quot;, &quot;income&quot;: 3500&#125;</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line"> # 清空表中数据</span><br><span class="line"> cursor.execute(&quot;delete from employee&quot;)</span><br><span class="line"> # 执行 sql 插入语句</span><br><span class="line"> for employee in employees:</span><br><span class="line">  cursor.execute(sql % (employee[&quot;first_name&quot;], \</span><br><span class="line">   employee[&quot;last_name&quot;], \</span><br><span class="line">   employee[&quot;age&quot;], \</span><br><span class="line">   employee[&quot;sex&quot;], \</span><br><span class="line">   employee[&quot;income&quot;]))</span><br><span class="line"> # 提交到数据库执行</span><br><span class="line"> db_conn.commit()</span><br><span class="line"> # 对于支持事务的数据库， 在Python数据库编程中，</span><br><span class="line"> # 当游标建立之时，就自动开始了一个隐形的数据库事务。</span><br><span class="line"> # 用 commit 方法能够提交事物</span><br><span class="line">except Exception, e:</span><br><span class="line"> # Rollback in case there is any error</span><br><span class="line"> print &quot;Error to insert data:&quot;, e</span><br><span class="line"> #b_conn.rollback()</span><br><span class="line"></span><br><span class="line">print &quot;Insert rowcount:&quot;, cursor.rowcount</span><br><span class="line"># rowcount 是一个只读属性，并返回执行execute(方法后影响的行数。)</span><br><span class="line"></span><br><span class="line"># 数据库查询操作:</span><br><span class="line"># fetchone()  得到结果集的下一行</span><br><span class="line"># fetchmany([size=cursor.arraysize]) 得到结果集的下几行</span><br><span class="line"># fetchall()  返回结果集中剩下的所有行</span><br><span class="line">try:</span><br><span class="line"> # 执行 SQL</span><br><span class="line"> cursor.execute(&quot;select * from employee&quot;)</span><br><span class="line"></span><br><span class="line"> # 获取一行记录</span><br><span class="line"> rs = cursor.fetchone()</span><br><span class="line"> print rs</span><br><span class="line"></span><br><span class="line"> # 获取余下记录中的 2 行记录</span><br><span class="line"> rs = cursor.fetchmany(2)</span><br><span class="line"> print rs</span><br><span class="line"></span><br><span class="line"> # 获取剩下的所有记录</span><br><span class="line"> ars = cursor.fetchall()</span><br><span class="line"> for rs in ars:</span><br><span class="line">  print rs</span><br><span class="line"> # 可以用 fetchall 获得所有记录，然后再遍历</span><br><span class="line">except Exception, e:</span><br><span class="line"> print &quot;Error to select:&quot;, e</span><br><span class="line"></span><br><span class="line"># 数据库更新操作</span><br><span class="line">sql = &quot;UPDATE employee SET age = age + 1 WHERE sex = &apos;%c&apos;&quot; % (&apos;M&apos;)</span><br><span class="line">try:</span><br><span class="line"> # 执行SQL语句</span><br><span class="line"> cursor.execute(sql)</span><br><span class="line"> # 提交到数据库执行</span><br><span class="line"> db_conn.commit()</span><br><span class="line"> cursor.execute(&quot;select * from employee&quot;)</span><br><span class="line"> ars = cursor.fetchall()</span><br><span class="line"> print &quot;After update: ------&quot;</span><br><span class="line"> for rs in ars:</span><br><span class="line">  print rs</span><br><span class="line">except Exception, e:</span><br><span class="line"> # 发生错误时回滚</span><br><span class="line"> print &quot;Error to update:&quot;, e</span><br><span class="line"> db.rollback()</span><br><span class="line"></span><br><span class="line"># 关闭数据库连接</span><br><span class="line">db_conn.close()</span><br></pre></td></tr></table></figure></p>
+<p>其他参考文档：<br><a href="https://www.python.org/dev/peps/pep-0249/" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0249/</a><br><a href="http://wiki.python.org/moin/DatabaseInterfaces" target="_blank" rel="noopener">http://wiki.python.org/moin/DatabaseInterfaces</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/15/Assembly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/15/Assembly/" itemprop="url">Builder Method</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-15T21:04:00+08:00">
+                2018-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.MOV</p>
+<p>2.LEA</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/12/22/fuckPythonEnv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -348,8 +739,8 @@
         
           
             <p>全部使用anaconda</p>
-<p>macOS下的python环境配置<br>File: .zshrc<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure></p>
-<p>File: .bash_profile<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/sbin"</div></pre></td></tr></table></figure></p>
+<p>macOS下的python环境配置<br>File: .zshrc<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>File: .bash_profile<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/sbin"</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -473,378 +864,13 @@
 <h2 id="title-设计模式之装饰者模式"><a href="#title-设计模式之装饰者模式" class="headerlink" title="title:设计模式之装饰者模式"></a>title:设计模式之装饰者模式</h2><h1 id="装饰者模式："><a href="#装饰者模式：" class="headerlink" title="装饰者模式："></a>装饰者模式：</h1><p>动态地为一个对象添加一些额外的职责，若要扩展一个对象的功能，装饰者提供了比继承更有弹性的替代方案。<br>结构图：<br>[Decorator] !(/pictures/1.jpg “装饰者模式图”)<br>抽象构件类（Component）：给出一个抽象的接口，用以规范准备接收附加责任的对象<br>具体构件类（ConcreteComponent）：定义一个具体的准备接受附加责任的类，其必须实现Component接口。<br>装饰者类（Decorator）：持有一个构件（Conponent）对象的实例，并定义一个和抽象构件一致的接口。<br>具体装饰者类（Concrete Decoratator）：定义给构件对象“贴上”附加责任。</p>
 <p>下面用一个实例来讲解一下装饰者模式《head first 设计模式》中的例子：<br>比如在星巴兹咖啡馆，人们需要根据自己的爱好来订购咖啡，而具体的coffee种类假设一共用两类：<br>HouseBlend（混合咖啡）和darkRoast（深焙咖啡）。<br>而另外客人也可根据的口味来添加一些其他的东西，例如：摩卡（mocha）、Milk（牛奶）。</p>
 <p>从实例中可以分析出：<br>抽象构件类对应的就是coffee饮品（下面的beverage类）<br>具体构件类对应的就是HouseBlend和darkRoast<br>具体装饰者类对应mocha和milk口味<br>至于装饰者类这里没有对应，主要用于具体装饰者类的继承。</p>
-<p>下面看源代码：<br>抽象构造类Beverage.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></div><div class="line"><span class="comment"> *    抽象构件类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span> </span>&#123;</div><div class="line"></div><div class="line">    String description = <span class="string">"未知的咖啡"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> description;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>具体构件类（ConcreteComponent）：<br>DarkRoast.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></div><div class="line"><span class="comment"> *    具体构件类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DarkRoast</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DarkRoast</span><span class="params">()</span></span>&#123;</div><div class="line">        description = <span class="string">"深焙咖啡"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1.0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>HouseBlend.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></div><div class="line"><span class="comment"> *    具体构件类。HouseBlend代表咖啡中的一种：混合咖啡</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HouseBlend</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HouseBlend</span><span class="params">()</span> </span>&#123;</div><div class="line">        description = <span class="string">"混合咖啡"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> .<span class="number">89</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>装饰者类（Descorator）：<br>ConimentDecorator.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></div><div class="line"><span class="comment"> *    抽象装饰者类，所有的具体装饰者都必须继承这个类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>具体装饰者类（ConcreteDescorator）：<br>Mocha.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mocha</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span></span>&#123;</div><div class="line"></div><div class="line">    Beverage beverage;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mocha</span><span class="params">(Beverage beverage)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.beverage = beverage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">",摩卡"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> beverage.cost() + .<span class="number">20</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Milk.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span></span>&#123;</div><div class="line"></div><div class="line">    Beverage beverage;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Milk</span><span class="params">(Beverage beverage)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.beverage = beverage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">" ,牛奶"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> beverage.cost() + .<span class="number">10</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Client<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StarBuzzCoffee</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line"></div><div class="line">        Beverage beverage1 = <span class="keyword">new</span> DarkRoast();</div><div class="line">        beverage1 = <span class="keyword">new</span> Milk(beverage1);</div><div class="line">        beverage1 = <span class="keyword">new</span> Mocha(beverage1);</div><div class="line">        System.out.println(beverage1.getDescription() + <span class="string">"$"</span> + beverage1.cost());</div><div class="line"></div><div class="line">        Beverage beverage2 = <span class="keyword">new</span> HouseBlend();</div><div class="line">        beverage2 = <span class="keyword">new</span> Milk(beverage2);</div><div class="line">        beverage2 = <span class="keyword">new</span> Mocha(beverage2);</div><div class="line">        System.out.println(beverage2.getDescription() + <span class="string">"$"</span> + beverage2.cost());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/11/18/BuilderMethod/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YangYu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/18/BuilderMethod/" itemprop="url">Builder Method</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T17:05:35+08:00">
-                2017-11-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><p>在一个对象实例化的过程中，往往需要设置很多的参数<br>常见的有以下几种方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Telescoping constructor pattern -does not scale well!</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NutritionFacts</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize; <span class="comment">//(mL)             required</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servings;    <span class="comment">//(per container)  required</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;    <span class="comment">//                 optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;         <span class="comment">//                 optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;      <span class="comment">//(mg)             optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> carbohydrate;<span class="comment">//(g)              optional</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> servings)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, servings, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> servings,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">int</span> calories)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, servings, calories, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> servings,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">int</span> calories, <span class="keyword">int</span> fat)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, servings, calories, fat, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> servings,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">int</span> calories, <span class="keyword">int</span> fat, <span class="keyword">int</span> sodium)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(servingSize, servings, calories, fat, sodium, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">(<span class="keyword">int</span> servingSize, <span class="keyword">int</span> servings,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">int</span> calories, <span class="keyword">int</span> fat, <span class="keyword">int</span> sodium, <span class="keyword">int</span> carbohydrate)</span> </span>&#123;</div><div class="line">                <span class="keyword">this</span>.servingSize = servingSize;</div><div class="line">                <span class="keyword">this</span>.servings = servings;</div><div class="line">                <span class="keyword">this</span>.calories = calories;</div><div class="line">                <span class="keyword">this</span>.fat = fat;</div><div class="line">                <span class="keyword">this</span>.sodium = sodium;</div><div class="line">                <span class="keyword">this</span>.carbohydrate = carbohydrate;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//JavaBeans pattern</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NutritionFacts</span> </span>&#123;</div><div class="line">    <span class="comment">// Parameters initialized to default values (if any)</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> servingSize = -<span class="number">1</span>;  <span class="comment">//(mL)             required</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> servings    = -<span class="number">1</span>;  <span class="comment">//(per container)  required</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> calories    = <span class="number">0</span>;   <span class="comment">//                 optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> fat         = <span class="number">0</span>;   <span class="comment">//                 optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sodium      = <span class="number">0</span>;   <span class="comment">//(mg)             optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> carbohydrate = <span class="number">0</span>;  <span class="comment">//(g)              optional</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//Setters</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">()</span></span>&#123; &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setServingSize</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;<span class="keyword">this</span>.servingSize = val;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setServings</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;<span class="keyword">this</span>.servings = val;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCalories</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;<span class="keyword">this</span>.calories = val;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFat</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;<span class="keyword">this</span>.fat = val;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSodium</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;<span class="keyword">this</span>.sodium = val;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCarbohydrate</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;<span class="keyword">this</span>.carbohydrate = val;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Builder pattern</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NutritionFacts</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize; <span class="comment">//(mL)             required</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servings;    <span class="comment">//(per container)  required</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories;    <span class="comment">//                 optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat;         <span class="comment">//                 optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium;      <span class="comment">//(mg)             optional</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> carbohydrate;<span class="comment">//(g)              optional</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">        <span class="comment">//Required parameters</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servingSize;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> servings;</div><div class="line"></div><div class="line">        <span class="comment">//Optional parameters - initialized to default values</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> calories = <span class="number">0</span>;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fat = <span class="number">0</span>;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> sodium = <span class="number">0</span>;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> carbohydrate = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">calories</span><span class="params">(<span class="keyword">int</span> val)</span></span></div><div class="line"><span class="function">        </span>&#123;</div><div class="line">            <span class="keyword">this</span>.calories = val;    </div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">fat</span><span class="params">(<span class="keyword">int</span> val)</span></span></div><div class="line"><span class="function">        </span>&#123;</div><div class="line">            <span class="keyword">this</span>.fat = val;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sodium</span><span class="params">(<span class="keyword">int</span> val)</span></span></div><div class="line"><span class="function">        </span>&#123;</div><div class="line">            <span class="keyword">this</span>.sodium = val;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">carbohydrate</span><span class="params">(<span class="keyword">int</span> val)</span></span></div><div class="line"><span class="function">        </span>&#123;</div><div class="line">            <span class="keyword">this</span>.carbohydrate = val;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> NutritionFacts <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> NutritionFacts(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NutritionFacts</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.servingSize = builder.servingSize;</div><div class="line">        <span class="keyword">this</span>.servings = builder.servings;</div><div class="line">        <span class="keyword">this</span>.calories = builder.calories;</div><div class="line">        <span class="keyword">this</span>.fat = builder.fat;</div><div class="line">        <span class="keyword">this</span>.sodium = builder.sodium;</div><div class="line">        <span class="keyword">this</span>.carbohydrate = builder.carbohydrate;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">NutritionFacts cocaCola = <span class="keyword">new</span> NutritionFacts.Builder(<span class="number">240</span>, <span class="number">8</span>).calories(<span class="number">100</span>).</div><div class="line">                            sodium(<span class="number">35</span>).carbohydrate(<span class="number">27</span>).build();</div><div class="line"><span class="comment">//initialize in chain</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/11/01/Python语法糖/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YangYu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/01/Python语法糖/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T17:46:04+08:00">
-                2017-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open(<span class="string">'input.txt'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">    f.write()</div></pre></td></tr></table></figure>
-<p>这种写法可以避免讨论处理文件的一些异常，和关闭</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/24/Factory_Method/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YangYu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/24/Factory_Method/" itemprop="url">Factory Method</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T14:54:39+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>工厂模式是我们最常用的实例化对象模式之一。<br>特点是，使用工厂方法代替new操作的一种模式。</p>
-<p>使用工厂模式，可以给系统更大的可扩展性和尽量少的修改量<br>因为工厂模式就相当于创建实例对象的new，我们经常要根据类Class生成实例对象，如A a=new A()<br>工厂模式也是用来创建实例对象的，所以以后new时就要多个心眼，是否可以考虑使用工厂模式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">* 工厂模式&lt;br&gt;</span></div><div class="line"><span class="comment">* <span class="doctag">@author</span> YangYu</span></div><div class="line"><span class="comment">* <span class="doctag">@version</span> 1.0</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Sample a = <span class="keyword">new</span> Sameple(<span class="number">1</span>);</div><div class="line">    <span class="comment">//通过</span></div><div class="line">    Sample b = <span class="keyword">new</span> creator(<span class="number">1</span>);</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> arg;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">  * <span class="doctag">@param</span> x</span></div><div class="line"><span class="comment">  * <span class="doctag">@return</span> Sample</span></div><div class="line"><span class="comment">  */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Sample</span><span class="params">(<span class="keyword">int</span> x)</span></span></div><div class="line"><span class="function">  </span>&#123;</div><div class="line">      arg = x;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sample <span class="title">creator</span><span class="params">(<span class="keyword">int</span> which)</span></span></div><div class="line"><span class="function">  </span>&#123;</div><div class="line">    <span class="keyword">if</span> (which == <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Sample(<span class="number">1</span>);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (which == <span class="number">2</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Sample(<span class="number">2</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面看源代码：<br>抽象构造类Beverage.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></span><br><span class="line"><span class="comment"> *    抽象构件类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String description = <span class="string">"未知的咖啡"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>具体构件类（ConcreteComponent）：<br>DarkRoast.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></span><br><span class="line"><span class="comment"> *    具体构件类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DarkRoast</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DarkRoast</span><span class="params">()</span></span>&#123;</span><br><span class="line">        description = <span class="string">"深焙咖啡"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>HouseBlend.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></span><br><span class="line"><span class="comment"> *    具体构件类。HouseBlend代表咖啡中的一种：混合咖啡</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HouseBlend</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HouseBlend</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        description = <span class="string">"混合咖啡"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> .<span class="number">89</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>装饰者类（Descorator）：<br>ConimentDecorator.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> haifei</span></span><br><span class="line"><span class="comment"> *    抽象装饰者类，所有的具体装饰者都必须继承这个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> <span class="keyword">extends</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>具体装饰者类（ConcreteDescorator）：<br>Mocha.java:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mocha</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    Beverage beverage;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mocha</span><span class="params">(Beverage beverage)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.beverage = beverage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">",摩卡"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.cost() + .<span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Milk.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    Beverage beverage;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Milk</span><span class="params">(Beverage beverage)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.beverage = beverage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">" ,牛奶"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.cost() + .<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Client<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StarBuzzCoffee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Beverage beverage1 = <span class="keyword">new</span> DarkRoast();</span><br><span class="line">        beverage1 = <span class="keyword">new</span> Milk(beverage1);</span><br><span class="line">        beverage1 = <span class="keyword">new</span> Mocha(beverage1);</span><br><span class="line">        System.out.println(beverage1.getDescription() + <span class="string">"$"</span> + beverage1.cost());</span><br><span class="line"></span><br><span class="line">        Beverage beverage2 = <span class="keyword">new</span> HouseBlend();</span><br><span class="line">        beverage2 = <span class="keyword">new</span> Milk(beverage2);</span><br><span class="line">        beverage2 = <span class="keyword">new</span> Mocha(beverage2);</span><br><span class="line">        System.out.println(beverage2.getDescription() + <span class="string">"$"</span> + beverage2.cost());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -884,7 +910,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -954,7 +980,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -967,7 +993,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -985,6 +1011,41 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="true" target="_blank" title="enable">
+                  
+                    <i class="fa fa-fw fa-true"></i>
+                  
+                    
+                      enable
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="github" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="email">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      email
+                    
+                </a>
+              </span>
+            
           
         </div>
 
