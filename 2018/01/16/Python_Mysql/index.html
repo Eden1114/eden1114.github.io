@@ -100,16 +100,16 @@
 <meta name="description" content="#install mysqlMacOS下安装brew install mysqlmysqladmin -u root -pmysql -u root -p-u 指定用户-p 输入密码 yangyu1114 添加用户GRANT USAGE ON *.* TO &amp;#39;user01&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;123456&amp;#39; WIT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python操作Mysql">
-<meta property="og:url" content="http://eden1114.github.io/2018/01/16/Mysql/index.html">
+<meta property="og:url" content="http://eden1114.github.io/2018/01/16/Python_Mysql/index.html">
 <meta property="og:site_name" content="Eden&#39;s Blog">
 <meta property="og:description" content="#install mysqlMacOS下安装brew install mysqlmysqladmin -u root -pmysql -u root -p-u 指定用户-p 输入密码 yangyu1114 添加用户GRANT USAGE ON *.* TO &amp;#39;user01&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;123456&amp;#39; WIT">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://eden1114.github.io/2018/01/16/Mysql/pictures/pyton-dbapi.jpg">
-<meta property="og:updated_time" content="2018-08-06T10:48:45.572Z">
+<meta property="og:image" content="http://eden1114.github.io/2018/01/16/Python_Mysql/pyton-dbapi.jpg">
+<meta property="og:updated_time" content="2018-08-06T10:56:10.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python操作Mysql">
 <meta name="twitter:description" content="#install mysqlMacOS下安装brew install mysqlmysqladmin -u root -pmysql -u root -p-u 指定用户-p 输入密码 yangyu1114 添加用户GRANT USAGE ON *.* TO &amp;#39;user01&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;123456&amp;#39; WIT">
-<meta name="twitter:image" content="http://eden1114.github.io/2018/01/16/Mysql/pictures/pyton-dbapi.jpg">
+<meta name="twitter:image" content="http://eden1114.github.io/2018/01/16/Python_Mysql/pyton-dbapi.jpg">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://eden1114.github.io/2018/01/16/Mysql/"/>
+  <link rel="canonical" href="http://eden1114.github.io/2018/01/16/Python_Mysql/"/>
 
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/16/Mysql/">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/16/Python_Mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangYu">
@@ -350,7 +350,7 @@
 <p>#python<br><code>pip install mysqlclient</code><br><code>pip install mysql-connector-python</code></p>
 <p>##前言</p>
 <p>在Python中如果要连接数据库，不管是MySQL、SQL Server、PostgreSQL亦或是SQLite，使用时都是采用游标的方式，所以就不得不学习Python DB-API。<br>Python所有的数据库接口程序都在一定程度上遵守 Python DB-API 规范。DB-API定义了一系列必须的对象和数据库存取方式，以便为各种底层数据库系统和多种多样的数据库接口程序提供一致的访问接口。由于DB-API 为不同的数据库提供了一致的访问接口， 在不同的数据库之间移植代码成为一件轻松的事情。<br>Python连接数据库流程：</p>
-<p><img src="/2018/01/16/Mysql/./pictures/pyton-dbapi.jpg" alt="python-db-API"></p>
+<p><img src="/2018/01/16/Python_Mysql/pyton-dbapi.jpg" alt="python-db-API"></p>
 <p>使用connect创建connection连接<br>connect 方法生成一个 connect 对象, 我们通过这个对象来访问数据库。符合标准的模块都会实现 connect 方法。</p>
 <p>connect 函数的参数如下所示：<br>user Username<br>password Password<br>host Hostname<br>database Database name<br>dsn Data source name<br>数据库连接参数可以以一个 DSN 字符串的形式提供，示例：connect(dsn=’host:MYDB’,user=’root’,password=’ ‘)<br>当然，不同的数据库接口程序可能有些差异，并非都是严格按照规范实现，例如MySQLdb则使用 db 参数而不是规范推荐的 database 参数来表示要访问的数据库：<br>MySQLdb连接时可用参数<br>host: 数据库主机名.默认是用本地主机<br>user: 数据库登陆名.默认是当前用户<br>passwd: 数据库登陆的秘密.默认为空<br>db: 要使用的数据库名.没有默认值<br>port: MySQL服务使用的TCP端口.默认是3306<br>charset: 数据库编码<br>psycopg2连接时可用参数：<br>dbname – 数据库名称 (dsn连接模式)<br>database – 数据库名称<br>user – 用户名<br>password – 密码<br>host – 服务器地址 (如果不提供默认连接Unix Socket)<br>port – 连接端口 (默认5432)<br>其中connect对象又有如下方法:</p>
 <p>close():关闭此connect对象, 关闭后无法再进行操作，除非再次创建连接<br>commit():提交当前事务，如果是支持事务的数据库执行增删改后没有commit则数据库默认回滚<br>rollback():取消当前事务<br>cursor():创建游标对象<br>使用cursor创建游标对象<br>cursor游标对象又有如下属性和方法:<br>常用方法:<br>close():关闭此游标对象<br>fetchone():得到结果集的下一行<br>fetchmany([size = cursor.arraysize]):得到结果集的下几行<br>fetchall():得到结果集中剩下的所有行<br>excute(sql[, args]):执行一个数据库查询或命令<br>excutemany(sql, args):执行多个数据库查询或命令<br>常用属性:<br>connection:创建此游标对象的数据库连接<br>arraysize:使用fetchmany()方法一次取出多少条记录，默认为1<br>lastrowid:相当于PHP的last_inset_id()<br>其他方法：</p>

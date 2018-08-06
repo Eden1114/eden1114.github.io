@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/network.png">
 <meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/softupdate.png">
 <meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/ddpg.jpg">
-<meta property="og:updated_time" content="2018-08-06T10:37:50.466Z">
+<meta property="og:updated_time" content="2018-08-06T11:08:18.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DDPG算法总结">
 <meta name="twitter:description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
@@ -368,7 +368,7 @@
 <h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img src="/2018/08/06/DDPG/./ddpg.jpg" alt="ddpg algorithm">  </p>
 <p>首先代码的第一部分是初始化。  </p>
 <ul>
-<li>初始化actor\critic的 online 神经网络参数: θQ 和 θμ；  </li>
+<li>初始化actor\critic的 online 神经网络参数: θQ 和 θμ</li>
 <li>将online网络的参数拷贝给对应的target网络参数：θQ′←θQ,θμ′←θμ ;  </li>
 <li><p>初始化replay memory buffer R;</p>
 </li>
@@ -381,7 +381,7 @@
 <li>执行该动作，从环境中获取reward和下一个状态的St+1</li>
 <li>将这个动作转换存储到经验池（memery buffer）R中</li>
 <li>从R中随机采样N个transition数据即 (st,at,rt，st+1)，作为训练online-actor,online-critic网络的训练数据。</li>
-<li>根据target网络获得估计的Q值，定义loss为MSE: mean squared error：<br>L=(1/N)∑i(yi−Q(si,ai|θQ))^2(见上图吧)用这个Q值更新online-critic网络(ps:这里可以看成监督学习的方法，yi是标签）</li>
+<li>根据target网络获得估计的Q值，定义loss为MSE: mean squared error：L=(1/N)∑i(yi−Q(si,ai|θQ))^2(见上图吧)用这个Q值更新online-critic网络(ps:这里可以看成监督学习的方法，yi是标签）</li>
 <li>基于标准的bp使用梯度下降的策略更新online-actor网络</li>
 <li>使用soft update的方法更新target-critic,target-actor网络</li>
 </ul>
@@ -404,7 +404,7 @@
 <li><p>target网络和online网络的使用， 使的学习过程更加稳定，收敛更有保障。</p>
 </li>
 </ol>
-<p>##公式的推导<br>关于公式的推导，因为公式不宜输入，建议看论文。</p>
+<h2 id="公式的推导"><a href="#公式的推导" class="headerlink" title="公式的推导"></a>公式的推导</h2><p>关于公式的推导，因为公式不宜输入，建议看论文。</p>
 
       
     </div>
@@ -439,8 +439,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/06/Office/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/06/Office/" rel="prev" title="Office 破解">
+                Office 破解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -612,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Reinforcement-Learning-DDPG"><span class="nav-number">1.</span> <span class="nav-text">Deep Reinforcement Learning/DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG"><span class="nav-number">1.2.</span> <span class="nav-text">DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#online网络与target网络"><span class="nav-number">1.2.1.</span> <span class="nav-text">online网络与target网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法流程"><span class="nav-number">1.3.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG对于DPG的关键改进"><span class="nav-number">1.4.</span> <span class="nav-text">DDPG对于DPG的关键改进</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Reinforcement-Learning-DDPG"><span class="nav-number">1.</span> <span class="nav-text">Deep Reinforcement Learning/DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG"><span class="nav-number">1.2.</span> <span class="nav-text">DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#online网络与target网络"><span class="nav-number">1.2.1.</span> <span class="nav-text">online网络与target网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法流程"><span class="nav-number">1.3.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG对于DPG的关键改进"><span class="nav-number">1.4.</span> <span class="nav-text">DDPG对于DPG的关键改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式的推导"><span class="nav-number">1.5.</span> <span class="nav-text">公式的推导</span></a></li></ol></li></ol></div>
             
 
           </div>
