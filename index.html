@@ -276,6 +276,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/10/pysc2-env/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/pysc2-env/" itemprop="url">pysc2_env</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T16:57:23+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="pysc2项目详解"><a href="#pysc2项目详解" class="headerlink" title="pysc2项目详解"></a>pysc2项目详解</h1><p>因为工程需要，需要读pysc2的源码，对enviroment module 进行修改</p>
+<p>Spacial Observations 是以y坐标为主序的，写作(y,x)<br>Actions 的坐标是以x坐标为主序的，写作（x,y)  </p>
+<p>样例代码：  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Spatial observations have the y-coordinate first:</span></span><br><span class="line">   y, x = (obs.observation[<span class="string">"feature_screen"</span>][_PLAYER_RELATIVE] == _PLAYER_NEUTRAL).nonzero()</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Actions expect x-coordinate first:</span></span><br><span class="line">   target = [int(x.mean()), int(y.mean())]</span><br><span class="line">   action = actions.FunctionCall.Move_screen(<span class="string">"now"</span>, target)</span><br></pre></td></tr></table></figure>
+<h1 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># env/environment.py文件中基类的定义</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@abc.abstractmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">action_spec</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""Defines the actions that should be provided to `step`.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">      A tuple of specs (one per agent), where each spec is something that</span></span><br><span class="line"><span class="string">        defines the shape of the actions.</span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<p>action_spec返回的是一个tuple，tuple每一个元素是一个tuple构成的dict，对应于每一个agent。</p>
+<h1 id="Observations"><a href="#Observations" class="headerlink" title="Observations"></a>Observations</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># env/environment.py文件中基类的定义</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@abc.abstractmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">observation_spec</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""Defines the observations provided by the environment.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">      A tuple of specs (one per agent), where each spec is a dict of shape</span></span><br><span class="line"><span class="string">        tuples.</span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<p>observation_spec返回的是一个tuple。tuple每一个元素是一个tuple构成的dict，对应于每一个agent。</p>
+<p>每一个agent的observation包括Spacial</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">observation_spec</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""The observation spec for the SC2 environment.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    It's worth noting that the image-like observations are in y,x/row,column</span></span><br><span class="line"><span class="string">    order which is different than the actions which are in x,y order. This is</span></span><br><span class="line"><span class="string">    due to conflicting conventions, and to facilitate printing of the images.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">      The dict of observation names to their tensor shapes. Shapes with a 0 can</span></span><br><span class="line"><span class="string">      vary in length, for example the number of valid actions depends on which</span></span><br><span class="line"><span class="string">      units you have selected.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 所有的obs参数</span></span><br><span class="line">    obs_spec = named_array.NamedDict(&#123;</span><br><span class="line">        <span class="string">"action_result"</span>: (<span class="number">0</span>,),  <span class="comment"># See error.proto: ActionResult.</span></span><br><span class="line">        <span class="string">"alerts"</span>: (<span class="number">0</span>,),  <span class="comment"># See sc2api.proto: Alert.</span></span><br><span class="line">        <span class="string">"available_actions"</span>: (<span class="number">0</span>,),</span><br><span class="line">        <span class="string">"build_queue"</span>: (<span class="number">0</span>, len(UnitLayer)),  <span class="comment"># pytype: disable=wrong-arg-types</span></span><br><span class="line">        <span class="string">"cargo"</span>: (<span class="number">0</span>, len(UnitLayer)),  <span class="comment"># pytype: disable=wrong-arg-types</span></span><br><span class="line">        <span class="string">"cargo_slots_available"</span>: (<span class="number">1</span>,),</span><br><span class="line">        <span class="string">"control_groups"</span>: (<span class="number">10</span>, <span class="number">2</span>),</span><br><span class="line">        <span class="string">"game_loop"</span>: (<span class="number">1</span>,),</span><br><span class="line">        <span class="string">"last_actions"</span>: (<span class="number">0</span>,),</span><br><span class="line">        <span class="string">"multi_select"</span>: (<span class="number">0</span>, len(UnitLayer)),  <span class="comment"># pytype: disable=wrong-arg-types</span></span><br><span class="line">        <span class="string">"player"</span>: (len(Player),),  <span class="comment"># pytype: disable=wrong-arg-types</span></span><br><span class="line">        <span class="string">"score_cumulative"</span>: (len(ScoreCumulative),),  <span class="comment"># pytype: disable=wrong-arg-types</span></span><br><span class="line">        <span class="string">"single_select"</span>: (<span class="number">0</span>, len(UnitLayer)),  <span class="comment"># Only (n, 7) for n in (0, 1).  # pytype: disable=wrong-arg-types</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    aif = self._agent_interface_format</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> aif.feature_dimensions:</span><br><span class="line">      obs_spec[<span class="string">"feature_screen"</span>] = (len(SCREEN_FEATURES),</span><br><span class="line">                                    aif.feature_dimensions.screen.y,</span><br><span class="line">                                    aif.feature_dimensions.screen.x)</span><br><span class="line"></span><br><span class="line">      obs_spec[<span class="string">"feature_minimap"</span>] = (len(MINIMAP_FEATURES),</span><br><span class="line">                                     aif.feature_dimensions.minimap.y,</span><br><span class="line">                                     aif.feature_dimensions.minimap.x)</span><br><span class="line">    <span class="keyword">if</span> aif.rgb_dimensions:</span><br><span class="line">      obs_spec[<span class="string">"rgb_screen"</span>] = (aif.rgb_dimensions.screen.y,</span><br><span class="line">                                aif.rgb_dimensions.screen.x,</span><br><span class="line">                                <span class="number">3</span>)</span><br><span class="line">      obs_spec[<span class="string">"rgb_minimap"</span>] = (aif.rgb_dimensions.minimap.y,</span><br><span class="line">                                 aif.rgb_dimensions.minimap.x,</span><br><span class="line">                                 <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">if</span> aif.use_feature_units:</span><br><span class="line">      obs_spec[<span class="string">"feature_units"</span>] = (<span class="number">0</span>, len(FeatureUnit))  <span class="comment"># pytype: disable=wrong-arg-types</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> aif.use_raw_units:</span><br><span class="line">      obs_spec[<span class="string">"raw_units"</span>] = (<span class="number">0</span>, len(FeatureUnit))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> aif.use_unit_counts:</span><br><span class="line">      obs_spec[<span class="string">"unit_counts"</span>] = (<span class="number">0</span>, len(UnitCounts))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> aif.use_camera_position:</span><br><span class="line">      obs_spec[<span class="string">"camera_position"</span>] = (<span class="number">2</span>,)</span><br><span class="line">    <span class="keyword">return</span> obs_spec</span><br></pre></td></tr></table></figure>
+<h2 id="Spacial-elements"><a href="#Spacial-elements" class="headerlink" title="Spacial elements"></a>Spacial elements</h2><h3 id="RGBPixels"><a href="#RGBPixels" class="headerlink" title="RGBPixels"></a>RGBPixels</h3><ol>
+<li><p>rgb_screen<br> <code>rgb_screen</code></p>
+</li>
+<li><p>rgb_minimap<br> <code>rgb_minimap</code></p>
+</li>
+</ol>
+<h3 id="Feature-layers"><a href="#Feature-layers" class="headerlink" title="Feature layers"></a>Feature layers</h3><p>在 <code>pysc2.lib.features</code> 中定义</p>
+<ol>
+<li><p>feature_screen -&gt; 13个</p>
+<ul>
+<li><code>height_map</code></li>
+<li><code>visibility</code></li>
+<li><code>creep</code></li>
+<li><code>power</code></li>
+<li><code>player_id</code></li>
+<li><code>player_relative</code></li>
+<li><code>unit_type</code></li>
+<li><code>selected</code></li>
+<li><code>hit_points</code></li>
+<li><code>energy</code></li>
+<li><code>shields</code></li>
+<li><code>unit_density</code></li>
+<li><code>unit_desity_aa</code></li>
+</ul>
+</li>
+<li><p>feature_minimap -&gt; 7个</p>
+<ul>
+<li><code>height_map</code></li>
+<li><code>visibility</code></li>
+<li><code>creep</code></li>
+<li><code>camera</code></li>
+<li><code>player_id</code></li>
+<li><code>player_relative</code></li>
+<li><code>selected</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="Structure-elements"><a href="#Structure-elements" class="headerlink" title="Structure elements"></a>Structure elements</h2><ol>
+<li>General player information</li>
+</ol>
+<ul>
+<li><code>player_id</code></li>
+<li><code>minerals</code></li>
+<li><code>vespene</code></li>
+<li><code>food used (otherwise known as supply)</code></li>
+<li><code>food cap</code></li>
+<li><code>food used by army</code></li>
+<li><code>food used by workers</code></li>
+<li><code>idle worker count</code></li>
+<li><code>army count</code></li>
+<li><code>warp gate count (for protoss)</code></li>
+<li><code>larva count (for zerg)</code></li>
+</ul>
+<ol start="2">
+<li>Control groups</li>
+</ol>
+<p>A <code>(10, 2)</code> tensor showing the (unit leader type and count) for each of the 10<br>control groups. The indices in this tensor are referenced by the <code>control-group</code><br>action.</p>
+<p><a href="http://learningsc2.com/tag/control-groups/" target="_blank" rel="noopener">Control groups</a> are a way to<br>remember a selection set so that you can recall them easily later.</p>
+<ol start="3">
+<li>Single Select</li>
+</ol>
+<p>A <code>(7)</code> tensor showing information about a selected unit.</p>
+<ul>
+<li>unit type</li>
+<li>player_relative</li>
+<li>health</li>
+<li>shields</li>
+<li>energy</li>
+<li>transport slot taken if it’s in a transport</li>
+<li>build progress as a percentage if it’s still being built</li>
+</ul>
+<ol start="4">
+<li>Multi Select</li>
+</ol>
+<p>A <code>(n, 7)</code> tensor with the same as <a href="#single-select">single select</a> but for all<br><code>n</code> selected units. The indices in this tensor are referenced by the<br><code>select_unit</code> action.</p>
+<ol start="5">
+<li>Cargo</li>
+</ol>
+<p>A <code>(n, 7)</code> tensor similar to <a href="#single-select">single select</a>, but for all the<br>units in a transport. The indices in this tensor are referenced by the <code>unload</code><br>action.</p>
+<ol start="6">
+<li>Build Queue</li>
+</ol>
+<p>A <code>(n, 7)</code> tensor similar to <a href="#single-select">single select</a>, but for all the<br>units being built by a production building. The indices in this tensor are<br>referenced by the <code>build_queue</code> action.</p>
+<ol start="7">
+<li>Available Actions</li>
+</ol>
+<p>A <code>(n)</code> tensor listing all the action ids that are available at the time of this<br>observation.</p>
+<ol start="8">
+<li>Last Actions</li>
+</ol>
+<p>A <code>(n)</code> tensor listing all the action ids that were made successfully since the<br>last observation. An action that was attempted but failed is not included here.</p>
+<ol start="9">
+<li>Action Result</li>
+</ol>
+<p>A <code>(n)</code> tensor (usually size 1) giving the result of the action. The values are<br>listed in<br><a href="https://github.com/Blizzard/s2client-proto/blob/master/s2clientprotocol/error.proto" target="_blank" rel="noopener">error.proto</a></p>
+<ol start="10">
+<li>Alerts</li>
+</ol>
+<p>A <code>(n)</code> tensor (usually empty, occasionally size 1, max 2) for when you’re being attacked in a major way.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/06/Office/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -525,163 +753,6 @@
 </li>
 </ol>
 <h2 id="公式的推导"><a href="#公式的推导" class="headerlink" title="公式的推导"></a>公式的推导</h2><p>关于公式的推导，因为公式不宜输入，建议看论文。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/05/28/2018-05-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YangYu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/28/2018-05-28/" itemprop="url">现在要做的</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T14:37:49+08:00">
-                2018-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="四个维度提高自己"><a href="#四个维度提高自己" class="headerlink" title="四个维度提高自己"></a>四个维度提高自己</h1><p>分手也有一段时间了，得走出去了。<br>发现自己身上很多的问题。<br>得感谢她，发现自己身上很多的问题。<br>也很对不起她，真的反反复复很多次的伤害了她。<br>先做好自己，提高自己。<br>过个几年再考虑追她了。<br>现在只爱她一个，但是自己问题确实太大了。  </p>
-<p><strong>稳住，心态不能炸</strong></p>
-<h2 id="知识水平和能力（经济）"><a href="#知识水平和能力（经济）" class="headerlink" title="知识水平和能力（经济）"></a>知识水平和能力（经济）</h2><pre><code>不仅要多读书，也要多写作。
-多输出观点和看法。
-学会交流，完善自身的思想。
-写博客，写文章。
-</code></pre><h3 id="专业知识水平"><a href="#专业知识水平" class="headerlink" title="专业知识水平"></a>专业知识水平</h3><pre><code>提升专业知识水平，为未来奠定基础。
-首先是绩点、英语、项目、ACM。
-
-多写代码
-    提高自己的专业素养
-</code></pre><h3 id="综合知识水平"><a href="#综合知识水平" class="headerlink" title="综合知识水平"></a>综合知识水平</h3><p>多读书<br>    多接触一些时政历史地理情感金融方面的书<br>    广泛的学习，有所涉猎</p>
-<pre><code>全面提高自己
-</code></pre><h2 id="提高情绪控制能力（心理）"><a href="#提高情绪控制能力（心理）" class="headerlink" title="提高情绪控制能力（心理）"></a>提高情绪控制能力（心理）</h2><pre><code>提高情绪控制能力。
-先去学会开导对方，倾听对方意见。
-有观点不同的地方，不要先反驳，而是学会理解。
-学会忍让，从心里上接受不公平，正确认知自己，调动积极性，拒绝消极沉沦
-</code></pre><h3 id="心态建设"><a href="#心态建设" class="headerlink" title="心态建设"></a>心态建设</h3><pre><code>坚持不懈，乐观向上
-革命虽然难，但是终将成功
-</code></pre><p><strong>心态上，概括起来就是：乐观、自信、从容、不卑不亢。</strong></p>
-<h2 id="综合形象建设（社交）"><a href="#综合形象建设（社交）" class="headerlink" title="综合形象建设（社交）"></a>综合形象建设（社交）</h2><h3 id="护肤"><a href="#护肤" class="headerlink" title="护肤"></a>护肤</h3><pre><code>坚持涂防晒，不能让自己再黑下去了
-控制饮食，不长痘痘
-</code></pre><h3 id="发型"><a href="#发型" class="headerlink" title="发型"></a>发型</h3><pre><code>勤剪头发
-中分，偏分
-勤打理
-</code></pre><h3 id="衣品"><a href="#衣品" class="headerlink" title="衣品"></a>衣品</h3><pre><code>学会穿搭，找到适合自己的风格
-</code></pre><h3 id="形体"><a href="#形体" class="headerlink" title="形体"></a>形体</h3><pre><code>坚持健身
-拒绝驼背
-拒绝双下巴
-拒绝罗圈腿
-坚持健身，控制饮食
-腹肌六块，体重下降
-</code></pre><h2 id="生活习惯"><a href="#生活习惯" class="headerlink" title="生活习惯"></a>生活习惯</h2><pre><code>早睡
-背英语单词
-多喝热水，不喝饮料
-认真听课，记笔记
-多微信，主动融入圈子
-</code></pre><p><strong>控制自己的思念，为她也留出空间。过一段时间再追她吧。</strong></p>
 
           
         
@@ -1062,7 +1133,7 @@ N点：必胜点，处于此情况下，双方操作均正确的情况下必胜�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1075,7 +1146,7 @@ N点：必胜点，处于此情况下，双方操作均正确的情况下必胜�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
