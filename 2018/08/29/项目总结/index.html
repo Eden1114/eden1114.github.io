@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -97,18 +97,17 @@
 
 
 
-<meta name="description" content="12with open(&apos;input.txt&apos;,&apos;w&apos;) as f:    f.write() 这种写法可以避免讨论处理文件的一些异常，和关闭 12# 检查a是否是A,B, ...类型中的一个isinstance(x, (A, B, ...)) 12">
-<meta name="keywords" content="Python">
+<meta name="description" content="暑期科研工作项目总结本次项目的主要内容本次暑期科研项目，主要实现了基于A3C算法的智能体完成星际争霸枪兵护互拼的研究。 本次项目的难点分析在利用深度强化学习玩游戏的研究中，星际争霸2中agent还没有取得好的成绩。原因如下：  连续动作控制，每个动作之间有相关性，要从相关的一系列指令中学习  agent所处的环境更加复杂，有了战争迷雾的存在，对局势的估计更加的复杂  Reward难以估计   先前">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python语法糖整理">
-<meta property="og:url" content="http://eden1114.github.io/2017/11/01/Python语法糖/index.html">
+<meta property="og:title" content="暑期科研项目总结">
+<meta property="og:url" content="http://eden1114.github.io/2018/08/29/项目总结/index.html">
 <meta property="og:site_name" content="Eden&#39;s Blog">
-<meta property="og:description" content="12with open(&apos;input.txt&apos;,&apos;w&apos;) as f:    f.write() 这种写法可以避免讨论处理文件的一些异常，和关闭 12# 检查a是否是A,B, ...类型中的一个isinstance(x, (A, B, ...)) 12">
+<meta property="og:description" content="暑期科研工作项目总结本次项目的主要内容本次暑期科研项目，主要实现了基于A3C算法的智能体完成星际争霸枪兵护互拼的研究。 本次项目的难点分析在利用深度强化学习玩游戏的研究中，星际争霸2中agent还没有取得好的成绩。原因如下：  连续动作控制，每个动作之间有相关性，要从相关的一系列指令中学习  agent所处的环境更加复杂，有了战争迷雾的存在，对局势的估计更加的复杂  Reward难以估计   先前">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-10T08:53:30.909Z">
+<meta property="og:updated_time" content="2018-08-29T11:12:25.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python语法糖整理">
-<meta name="twitter:description" content="12with open(&apos;input.txt&apos;,&apos;w&apos;) as f:    f.write() 这种写法可以避免讨论处理文件的一些异常，和关闭 12# 检查a是否是A,B, ...类型中的一个isinstance(x, (A, B, ...)) 12">
+<meta name="twitter:title" content="暑期科研项目总结">
+<meta name="twitter:description" content="暑期科研工作项目总结本次项目的主要内容本次暑期科研项目，主要实现了基于A3C算法的智能体完成星际争霸枪兵护互拼的研究。 本次项目的难点分析在利用深度强化学习玩游戏的研究中，星际争霸2中agent还没有取得好的成绩。原因如下：  连续动作控制，每个动作之间有相关性，要从相关的一系列指令中学习  agent所处的环境更加复杂，有了战争迷雾的存在，对局势的估计更加的复杂  Reward难以估计   先前">
 
 
 
@@ -137,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://eden1114.github.io/2017/11/01/Python语法糖/"/>
+  <link rel="canonical" href="http://eden1114.github.io/2018/08/29/项目总结/"/>
 
 
 
 
 
-  <title>Python语法糖整理 | Eden's Blog</title>
+  <title>暑期科研项目总结 | Eden's Blog</title>
   
 
 
@@ -276,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/11/01/Python语法糖/">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/29/项目总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangYu">
@@ -293,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python语法糖整理</h1>
+          <h1 class="post-title" itemprop="name headline">暑期科研项目总结</h1>
         
 
         <div class="post-meta">
@@ -305,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T17:46:04+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T17:40:49+08:00">
+                2018-08-29
               </time>
             
 
@@ -343,10 +342,61 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'input.txt'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write()</span><br></pre></td></tr></table></figure>
-<p>这种写法可以避免讨论处理文件的一些异常，和关闭</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查a是否是A,B, ...类型中的一个</span></span><br><span class="line">isinstance(x, (A, B, ...))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="暑期科研工作项目总结"><a href="#暑期科研工作项目总结" class="headerlink" title="暑期科研工作项目总结"></a>暑期科研工作项目总结</h1><h2 id="本次项目的主要内容"><a href="#本次项目的主要内容" class="headerlink" title="本次项目的主要内容"></a>本次项目的主要内容</h2><p>本次暑期科研项目，主要实现了基于A3C算法的智能体完成星际争霸枪兵护互拼的研究。</p>
+<h3 id="本次项目的难点分析"><a href="#本次项目的难点分析" class="headerlink" title="本次项目的难点分析"></a>本次项目的难点分析</h3><p>在利用深度强化学习玩游戏的研究中，星际争霸2中agent还没有取得好的成绩。原因如下：</p>
+<ul>
+<li><p>连续动作控制，每个动作之间有相关性，要从相关的一系列指令中学习</p>
+</li>
+<li><p>agent所处的环境更加复杂，有了战争迷雾的存在，对局势的估计更加的复杂</p>
+</li>
+<li><p>Reward难以估计</p>
+</li>
+</ul>
+<h2 id="先前准备与学习"><a href="#先前准备与学习" class="headerlink" title="先前准备与学习"></a>先前准备与学习</h2><p>对深度学习的基础知识和tensorflow等代码实现有了基本的了解。  </p>
+<p>通过morvan的强化学习教程，深入学习了A3C算法等一系列Actor-Critic算法。</p>
+<h2 id="项目中个人工作和遇到的问题"><a href="#项目中个人工作和遇到的问题" class="headerlink" title="项目中个人工作和遇到的问题"></a>项目中个人工作和遇到的问题</h2><h3 id="工作概述"><a href="#工作概述" class="headerlink" title="工作概述"></a>工作概述</h3><ul>
+<li><p>学习DDPG算法，并做总结梳理</p>
+<p>  在项目开始的第一周，我负责学习DDPG算法和梳理整理DDPG算法的特性。<br>  并考虑使用DDPG算法实现相同的功能与A3C版作对比。</p>
+</li>
+<li><p>参与Reward的设计构思</p>
+<p>  参与构思Reward的设计。对于上层网络和下层网络而言，暴雪分数并不是一个合理的Reward。我们考虑上层网络是战略决策网络，而下层网络是战术决策网络。（策略分层），并设计不同的Reward。  </p>
+<p>  对于一个agent来说，在星际争霸的环境中，实际上是资源抢夺和造兵攻击的零和博弈。为了获取胜利其实要不断提高以下几个比例。在网络的设计中，可以考虑从这三个比例中着手设计Reward。</p>
+<ol>
+<li>资源转化率-&gt;当前已有资源转化为兵力的比例。  </li>
+<li>输出率-&gt;对地方造成输出的和损失兵力的比例。  </li>
+<li><p>获益率-&gt;通过给对方造成伤害，和获得了利益衡量的比例。  </p>
+<p>考虑到agent获取胜利的难度较大，我们考虑通过18分钟的时间作为限制，让agent在与电脑的对战中坚持更长的时间。同时在攻击地方和获得游戏胜利中给予更高的Reward。  </p>
+</li>
+</ol>
+</li>
+<li><p>代码的合并与调试</p>
+<p>  与董浩楠同学一起整理项目的代码，并运行出最初的一些成果。</p>
+</li>
+</ul>
+<h3 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h3><ul>
+<li><p>原版代码的loss问题</p>
+<pre><code>原版代码的损失函数定义为`loss = value_loss + target_loss`,然后通过`dl/dw`更新参数，实际上是有问题的。发现问题后，我和董浩楠同学决定，对网络进行修改，分离Actor和Critic网络，这样在更新参数的时候避免了问题，同时提高了训练速度。
+</code></pre></li>
+<li><p>tensorflow中scope.reuse的问题</p>
+<pre><code>`tf.get_variable()`会结合`reuse`进行检查返回tensor
+`tf.placeholder()`和`tf.variable()`不会检查，而是遇到冲突，用命名后加`_1`区分
+</code></pre></li>
+<li><p>在A3C算法中利用local net的梯度，更新global net，而不是将local net的参数push给global。原版代码中这一部分有很大的问题。</p>
+</li>
+</ul>
+<h2 id="本次项目的收获"><a href="#本次项目的收获" class="headerlink" title="本次项目的收获"></a>本次项目的收获</h2><ul>
+<li><p>通过本次项目经历，我学习到了很多深度学习和强化学习领域的前沿知识。对从未涉足过的一些深度学习算法有了更加深刻的理解和认识。从整个科研项目过程中，体验了科研工作的流程。  </p>
+</li>
+<li><p>在项目开发过程中，我同时学习了deeplearning.ai的深度学习教程，不断夯实自己的基础知识。对深度学习有了更加深入的理解和认识。</p>
+</li>
+</ul>
+<h2 id="问题和启发"><a href="#问题和启发" class="headerlink" title="问题和启发"></a>问题和启发</h2><h3 id="未解决的问题"><a href="#未解决的问题" class="headerlink" title="未解决的问题"></a>未解决的问题</h3><ul>
+<li>使用DDPG算法实现类似功能的Agent，并与A3C版进行性能比较，希望可以在本次研究结束后，抽出一部分时间，完成DDPG算法的实现。</li>
+</ul>
+<h3 id="避免再犯的问题"><a href="#避免再犯的问题" class="headerlink" title="避免再犯的问题"></a>避免再犯的问题</h3><ul>
+<li>本次项目维护代码的过程中，浪费了大量的经历。在一个小组协同开发的项目中，<br>  做好接口的定义和适当的文档说明非常重要。  </li>
+<li>对于代码的维护，建议使用SVN/Git等源代码管理工具，以提高效率和方便对比。</li>
+</ul>
 
       
     </div>
@@ -362,12 +412,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
-        </div>
-      
 
       
       
@@ -377,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/24/Factory_Method/" rel="next" title="Factory Method">
-                <i class="fa fa-chevron-left"></i> Factory Method
+              <a href="/2018/08/27/A3C/" rel="next" title="A3C 算法总结">
+                <i class="fa fa-chevron-left"></i> A3C 算法总结
               </a>
             
           </div>
@@ -386,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/18/BuilderMethod/" rel="prev" title="Builder Method">
-                Builder Method <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/profile.jpg"
@@ -541,6 +590,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#暑期科研工作项目总结"><span class="nav-number">1.</span> <span class="nav-text">暑期科研工作项目总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本次项目的主要内容"><span class="nav-number">1.1.</span> <span class="nav-text">本次项目的主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本次项目的难点分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">本次项目的难点分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先前准备与学习"><span class="nav-number">1.2.</span> <span class="nav-text">先前准备与学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目中个人工作和遇到的问题"><span class="nav-number">1.3.</span> <span class="nav-text">项目中个人工作和遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作概述"><span class="nav-number">1.3.1.</span> <span class="nav-text">工作概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题总结"><span class="nav-number">1.3.2.</span> <span class="nav-text">问题总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本次项目的收获"><span class="nav-number">1.4.</span> <span class="nav-text">本次项目的收获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题和启发"><span class="nav-number">1.5.</span> <span class="nav-text">问题和启发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未解决的问题"><span class="nav-number">1.5.1.</span> <span class="nav-text">未解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免再犯的问题"><span class="nav-number">1.5.2.</span> <span class="nav-text">避免再犯的问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

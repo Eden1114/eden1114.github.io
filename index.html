@@ -276,6 +276,301 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/29/项目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/项目总结/" itemprop="url">暑期科研项目总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T17:40:49+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="暑期科研工作项目总结"><a href="#暑期科研工作项目总结" class="headerlink" title="暑期科研工作项目总结"></a>暑期科研工作项目总结</h1><h2 id="本次项目的主要内容"><a href="#本次项目的主要内容" class="headerlink" title="本次项目的主要内容"></a>本次项目的主要内容</h2><p>本次暑期科研项目，主要实现了基于A3C算法的智能体完成星际争霸枪兵护互拼的研究。</p>
+<h3 id="本次项目的难点分析"><a href="#本次项目的难点分析" class="headerlink" title="本次项目的难点分析"></a>本次项目的难点分析</h3><p>在利用深度强化学习玩游戏的研究中，星际争霸2中agent还没有取得好的成绩。原因如下：</p>
+<ul>
+<li><p>连续动作控制，每个动作之间有相关性，要从相关的一系列指令中学习</p>
+</li>
+<li><p>agent所处的环境更加复杂，有了战争迷雾的存在，对局势的估计更加的复杂</p>
+</li>
+<li><p>Reward难以估计</p>
+</li>
+</ul>
+<h2 id="先前准备与学习"><a href="#先前准备与学习" class="headerlink" title="先前准备与学习"></a>先前准备与学习</h2><p>对深度学习的基础知识和tensorflow等代码实现有了基本的了解。  </p>
+<p>通过morvan的强化学习教程，深入学习了A3C算法等一系列Actor-Critic算法。</p>
+<h2 id="项目中个人工作和遇到的问题"><a href="#项目中个人工作和遇到的问题" class="headerlink" title="项目中个人工作和遇到的问题"></a>项目中个人工作和遇到的问题</h2><h3 id="工作概述"><a href="#工作概述" class="headerlink" title="工作概述"></a>工作概述</h3><ul>
+<li><p>学习DDPG算法，并做总结梳理</p>
+<p>  在项目开始的第一周，我负责学习DDPG算法和梳理整理DDPG算法的特性。<br>  并考虑使用DDPG算法实现相同的功能与A3C版作对比。</p>
+</li>
+<li><p>参与Reward的设计构思</p>
+<p>  参与构思Reward的设计。对于上层网络和下层网络而言，暴雪分数并不是一个合理的Reward。我们考虑上层网络是战略决策网络，而下层网络是战术决策网络。（策略分层），并设计不同的Reward。  </p>
+<p>  对于一个agent来说，在星际争霸的环境中，实际上是资源抢夺和造兵攻击的零和博弈。为了获取胜利其实要不断提高以下几个比例。在网络的设计中，可以考虑从这三个比例中着手设计Reward。</p>
+<ol>
+<li>资源转化率-&gt;当前已有资源转化为兵力的比例。  </li>
+<li>输出率-&gt;对地方造成输出的和损失兵力的比例。  </li>
+<li><p>获益率-&gt;通过给对方造成伤害，和获得了利益衡量的比例。  </p>
+<p>考虑到agent获取胜利的难度较大，我们考虑通过18分钟的时间作为限制，让agent在与电脑的对战中坚持更长的时间。同时在攻击地方和获得游戏胜利中给予更高的Reward。  </p>
+</li>
+</ol>
+</li>
+<li><p>代码的合并与调试</p>
+<p>  与董浩楠同学一起整理项目的代码，并运行出最初的一些成果。</p>
+</li>
+</ul>
+<h3 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h3><ul>
+<li><p>原版代码的loss问题</p>
+<pre><code>原版代码的损失函数定义为`loss = value_loss + target_loss`,然后通过`dl/dw`更新参数，实际上是有问题的。发现问题后，我和董浩楠同学决定，对网络进行修改，分离Actor和Critic网络，这样在更新参数的时候避免了问题，同时提高了训练速度。
+</code></pre></li>
+<li><p>tensorflow中scope.reuse的问题</p>
+<pre><code>`tf.get_variable()`会结合`reuse`进行检查返回tensor
+`tf.placeholder()`和`tf.variable()`不会检查，而是遇到冲突，用命名后加`_1`区分
+</code></pre></li>
+<li><p>在A3C算法中利用local net的梯度，更新global net，而不是将local net的参数push给global。原版代码中这一部分有很大的问题。</p>
+</li>
+</ul>
+<h2 id="本次项目的收获"><a href="#本次项目的收获" class="headerlink" title="本次项目的收获"></a>本次项目的收获</h2><ul>
+<li><p>通过本次项目经历，我学习到了很多深度学习和强化学习领域的前沿知识。对从未涉足过的一些深度学习算法有了更加深刻的理解和认识。从整个科研项目过程中，体验了科研工作的流程。  </p>
+</li>
+<li><p>在项目开发过程中，我同时学习了deeplearning.ai的深度学习教程，不断夯实自己的基础知识。对深度学习有了更加深入的理解和认识。</p>
+</li>
+</ul>
+<h2 id="问题和启发"><a href="#问题和启发" class="headerlink" title="问题和启发"></a>问题和启发</h2><h3 id="未解决的问题"><a href="#未解决的问题" class="headerlink" title="未解决的问题"></a>未解决的问题</h3><ul>
+<li>使用DDPG算法实现类似功能的Agent，并与A3C版进行性能比较，希望可以在本次研究结束后，抽出一部分时间，完成DDPG算法的实现。</li>
+</ul>
+<h3 id="避免再犯的问题"><a href="#避免再犯的问题" class="headerlink" title="避免再犯的问题"></a>避免再犯的问题</h3><ul>
+<li>本次项目维护代码的过程中，浪费了大量的经历。在一个小组协同开发的项目中，<br>  做好接口的定义和适当的文档说明非常重要。  </li>
+<li>对于代码的维护，建议使用SVN/Git等源代码管理工具，以提高效率和方便对比。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/27/A3C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/27/A3C/" itemprop="url">A3C 算法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T17:48:07+08:00">
+                2018-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="核心思想-Actor-Critic"><a href="#核心思想-Actor-Critic" class="headerlink" title="核心思想 Actor-Critic"></a>核心思想 Actor-Critic</h2><h2 id="Advantage和Asynchronize"><a href="#Advantage和Asynchronize" class="headerlink" title="Advantage和Asynchronize"></a>Advantage和Asynchronize</h2><p>##</p>
+<h2 id="glbal-gt-lobal-local的参数直接从globalNet中获取"><a href="#glbal-gt-lobal-local的参数直接从globalNet中获取" class="headerlink" title="glbal -&gt; lobal local的参数直接从globalNet中获取"></a>glbal -&gt; lobal local的参数直接从globalNet中获取</h2><p>##</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/10/pysc2-env/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -788,277 +1083,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/22/2018-1-22/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YangYu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/22/2018-1-22/" itemprop="url">组合游戏 - SG函数和SG定理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T16:55:42+08:00">
-                2018-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在介绍SG函数和SG定理之前我们先介绍介绍必胜点与必败点吧.</p>
-<h1 id="必胜点和必败点的概念："><a href="#必胜点和必败点的概念：" class="headerlink" title="必胜点和必败点的概念："></a>必胜点和必败点的概念：</h1><pre><code>P点：必败点，换而言之，就是谁处于此位置，则在双方操作正确的情况下必败。
-N点：必胜点，处于此情况下，双方操作均正确的情况下必胜。
-</code></pre><h1 id="必胜点和必败点的性质："><a href="#必胜点和必败点的性质：" class="headerlink" title="必胜点和必败点的性质："></a>必胜点和必败点的性质：</h1><pre><code>1、所有终结点是必败点P 。（我们以此为基本前提进行推理，换句话说，我们以此为假设）
-2、从任何必胜点N 操作，至少有一种方式可以进入必败点 P。
-3、无论如何操作，必败点P 都只能进入 必胜点 N。
-</code></pre><p>我们研究必胜点和必败点的目的时间为题进行简化，有助于我们的分析。通常我们分析必胜点和必败点都是以终结点进行逆序分析。我们以hdu 1847 Good Luck in CET-4 Everybody!为例：<br>当 n = 0 时，显然为必败点，因为此时你已经无法进行操作了<br>当 n = 1 时，因为你一次就可以拿完所有牌，故此时为必胜点<br>当 n = 2 时，也是一次就可以拿完，故此时为必胜点<br>当 n = 3 时，要么就是剩一张要么剩两张，无论怎么取对方都将面对必胜点，故这一点为必败点。<br>以此类推，最后你就可以得到；<br>    n    ：   0    1    2    3    4   5    6 …<br>position：  P    N   N    P   N   N   P …<br>你发现了什么没有，对，他们就是成有规律，使用了 P/N来分析，有没有觉得问题变简单了。<br>现在给你一个稍微复杂一点点的： hdu 2147 kiki’s game<br>      现在我们就来介绍今天的主角吧。组合游戏的和通常是很复杂的，但是有一种新工具，可以使组合问题变得简单————SG函数和SG定理。</p>
-<p>Sprague-Grundy定理（SG定理）：</p>
-<pre><code>游戏和的SG函数等于各个游戏SG函数的Nim和。这样就可以将每一个子游戏分而治之，从而简化了问题。而Bouton定理就是Sprague-Grundy定理在Nim游戏中的直接应用，因为单堆的Nim游戏 SG函数满足 SG(x) = x。不知道Nim游戏的请移步：这里
-</code></pre><p>SG函数：</p>
-<pre><code>首先定义mex(minimal excludant)运算，这是施加于一个集合的运算，表示最小的不属于这个集合的非负整数。例如mex{0,1,2,4}=3、mex{2,3,5}=0、mex{}=0。
-
-对于任意状态 x ， 定义 SG(x) = mex(S),其中 S 是 x 后继状态的SG函数值的集合。如 x 有三个后继状态分别为 SG(a),SG(b),SG(c)，那么SG(x) = mex{SG(a),SG(b),SG(c)}。 这样 集合S 的终态必然是空集，所以SG函数的终态为 SG(x) = 0,当且仅当 x 为必败点P时。
-</code></pre><p>【实例】取石子问题</p>
-<p>有1堆n个的石子，每次只能取{ 1, 3, 4 }个石子，先取完石子者胜利，那么各个数的SG值为多少？</p>
-<p>SG[0]=0，f[]={1,3,4},</p>
-<p>x=1 时，可以取走1 - f{1}个石子，剩余{0}个，所以 SG[1] = mex{ SG[0] }= mex{0} = 1;</p>
-<p>x=2 时，可以取走2 - f{1}个石子，剩余{1}个，所以 SG[2] = mex{ SG[1] }= mex{1} = 0;</p>
-<p>x=3 时，可以取走3 - f{1,3}个石子，剩余{2,0}个，所以 SG[3] = mex{SG[2],SG[0]} = mex{0,0} =1;</p>
-<p>x=4 时，可以取走4-  f{1,3,4}个石子，剩余{3,1,0}个，所以 SG[4] = mex{SG[3],SG[1],SG[0]} = mex{1,1,0} = 2;</p>
-<p>x=5 时，可以取走5 - f{1,3,4}个石子，剩余{4,2,1}个，所以SG[5] = mex{SG[4],SG[2],SG[1]} =mex{2,0,1} = 3;</p>
-<p>以此类推…..</p>
-<p> x        0  1  2  3  4  5  6  7  8….</p>
-<p>SG[x]    0  1  0  1  2  3  2  0  1….</p>
-<p>由上述实例我们就可以得到SG函数值求解步骤，那么计算1~n的SG函数值步骤如下：</p>
-<p>1、使用 数组f 将 可改变当前状态 的方式记录下来。</p>
-<p>2、然后我们使用 另一个数组 将当前状态x 的后继状态标记。</p>
-<p>3、最后模拟mex运算，也就是我们在标记值中 搜索 未被标记值 的最小值，将其赋值给SG(x)。</p>
-<p>4、我们不断的重复 2 - 3 的步骤，就完成了 计算1~n 的函数值。</p>
-<p>代码实现如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//f[N]:可改变当前状态的方式，N为方式的种类，f[N]要在getSG之前先预处理  </span></span><br><span class="line"><span class="comment">//SG[]:0~n的SG函数值</span></span><br><span class="line"><span class="comment">//S[]:为x后继状态的集合  </span></span><br><span class="line"><span class="keyword">int</span> f[N],SG[MAXN],S[MAXN];  </span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">getSG</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> i,j;  </span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(SG,<span class="number">0</span>,<span class="keyword">sizeof</span>(SG));  </span><br><span class="line">    <span class="comment">//因为SG[0]始终等于0，所以i从1开始  </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">//每一次都要将上一状态的 后继集合 重置  </span></span><br><span class="line">        <span class="built_in">memset</span>(S, <span class="number">0</span>, <span class="keyword">sizeof</span>(S));  </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>; f[j] &lt;= i &amp;&amp; j &lt;= N; j++)  </span><br><span class="line">            S[SG[i-f[j]]] = <span class="number">1</span>;  <span class="comment">//将后继状态的SG函数值进行标记  </span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>;; j++) <span class="keyword">if</span>(!S[j])&#123;   <span class="comment">//查询当前后继状态SG值中最小的非零值  </span></span><br><span class="line">            SG[i] = j;  </span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/01/20/RMQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YangYu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/20/RMQ/" itemprop="url">RMQ算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T11:30:47+08:00">
-                2018-01-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="RMQ算法"><a href="#RMQ算法" class="headerlink" title="RMQ算法"></a>RMQ算法</h1><p>Range Minimum/Maximum Query<br>应用：求区间最值</p>
-<h2 id="求区间最小值的模板"><a href="#求区间最小值的模板" class="headerlink" title="求区间最小值的模板"></a>求区间最小值的模板</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1</span> &lt;&lt; <span class="number">17</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> dat[<span class="number">2</span> *MAX_N - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n_)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//为了便于实现，把元素个数扩展到2^n的形式</span></span><br><span class="line">    n = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n &lt; n_) n &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">2</span> * n - <span class="number">1</span>;;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dat[i] = INT_MAX; <span class="comment">//初始化的值应该做到对操作无影响</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//把第k个值设为a</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//叶子结点</span></span><br><span class="line">    k += n - <span class="number">1</span>;</span><br><span class="line">    dat[k] = a;</span><br><span class="line">    <span class="comment">//向上更新</span></span><br><span class="line">    <span class="keyword">while</span>(k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        k = k / <span class="number">2</span>;</span><br><span class="line">        dat[k] = min(dat[<span class="number">2</span> * k], dat[<span class="number">2</span> * k + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求[a,b)的最小值</span></span><br><span class="line"><span class="comment">//k是节点编号，l,r表示这个节点对应的是[l,r)区间</span></span><br><span class="line"><span class="comment">//在外部调用时，用query(a, b, 0, 0, n)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> k, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a &gt;= r || b &lt;= l) <span class="keyword">return</span> INT_MAX;</span><br><span class="line">    <span class="keyword">int</span> (a &lt;= l &amp;&amp; r &lt;= b) <span class="keyword">return</span> dat[k];</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> vl = query(a, b, k * <span class="number">2</span> + <span class="number">1</span>, l, (l + r) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">int</span> vr = query(a, b, k * <span class="number">2</span> + <span class="number">2</span>, (l + r) / <span class="number">2</span>, r);</span><br><span class="line">        <span class="keyword">return</span> min(vl, vr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1133,7 +1157,7 @@ N点：必胜点，处于此情况下，双方操作均正确的情况下必胜�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1146,7 +1170,7 @@ N点：必胜点，处于此情况下，双方操作均正确的情况下必胜�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

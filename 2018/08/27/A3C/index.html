@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="DRL," />
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="12with open(&apos;input.txt&apos;,&apos;w&apos;) as f:    f.write() 这种写法可以避免讨论处理文件的一些异常，和关闭 12# 检查a是否是A,B, ...类型中的一个isinstance(x, (A, B, ...)) 12">
-<meta name="keywords" content="Python">
+<meta name="description" content="核心思想 Actor-CriticAdvantage和Asynchronize## glbal -&amp;gt; lobal local的参数直接从globalNet中获取##">
+<meta name="keywords" content="DRL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python语法糖整理">
-<meta property="og:url" content="http://eden1114.github.io/2017/11/01/Python语法糖/index.html">
+<meta property="og:title" content="A3C 算法总结">
+<meta property="og:url" content="http://eden1114.github.io/2018/08/27/A3C/index.html">
 <meta property="og:site_name" content="Eden&#39;s Blog">
-<meta property="og:description" content="12with open(&apos;input.txt&apos;,&apos;w&apos;) as f:    f.write() 这种写法可以避免讨论处理文件的一些异常，和关闭 12# 检查a是否是A,B, ...类型中的一个isinstance(x, (A, B, ...)) 12">
+<meta property="og:description" content="核心思想 Actor-CriticAdvantage和Asynchronize## glbal -&amp;gt; lobal local的参数直接从globalNet中获取##">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-10T08:53:30.909Z">
+<meta property="og:updated_time" content="2018-08-29T09:40:10.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python语法糖整理">
-<meta name="twitter:description" content="12with open(&apos;input.txt&apos;,&apos;w&apos;) as f:    f.write() 这种写法可以避免讨论处理文件的一些异常，和关闭 12# 检查a是否是A,B, ...类型中的一个isinstance(x, (A, B, ...)) 12">
+<meta name="twitter:title" content="A3C 算法总结">
+<meta name="twitter:description" content="核心思想 Actor-CriticAdvantage和Asynchronize## glbal -&amp;gt; lobal local的参数直接从globalNet中获取##">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://eden1114.github.io/2017/11/01/Python语法糖/"/>
+  <link rel="canonical" href="http://eden1114.github.io/2018/08/27/A3C/"/>
 
 
 
 
 
-  <title>Python语法糖整理 | Eden's Blog</title>
+  <title>A3C 算法总结 | Eden's Blog</title>
   
 
 
@@ -276,7 +276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/11/01/Python语法糖/">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/27/A3C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangYu">
@@ -293,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python语法糖整理</h1>
+          <h1 class="post-title" itemprop="name headline">A3C 算法总结</h1>
         
 
         <div class="post-meta">
@@ -305,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T17:46:04+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T17:48:07+08:00">
+                2018-08-27
               </time>
             
 
@@ -343,10 +343,8 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'input.txt'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write()</span><br></pre></td></tr></table></figure>
-<p>这种写法可以避免讨论处理文件的一些异常，和关闭</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查a是否是A,B, ...类型中的一个</span></span><br><span class="line">isinstance(x, (A, B, ...))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="核心思想-Actor-Critic"><a href="#核心思想-Actor-Critic" class="headerlink" title="核心思想 Actor-Critic"></a>核心思想 Actor-Critic</h2><h2 id="Advantage和Asynchronize"><a href="#Advantage和Asynchronize" class="headerlink" title="Advantage和Asynchronize"></a>Advantage和Asynchronize</h2><p>##</p>
+<h2 id="glbal-gt-lobal-local的参数直接从globalNet中获取"><a href="#glbal-gt-lobal-local的参数直接从globalNet中获取" class="headerlink" title="glbal -&gt; lobal local的参数直接从globalNet中获取"></a>glbal -&gt; lobal local的参数直接从globalNet中获取</h2><p>##</p>
 
       
     </div>
@@ -364,7 +362,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/DRL/" rel="tag"># DRL</a>
           
         </div>
       
@@ -377,8 +375,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/24/Factory_Method/" rel="next" title="Factory Method">
-                <i class="fa fa-chevron-left"></i> Factory Method
+              <a href="/2018/08/10/pysc2-env/" rel="next" title="pysc2_env">
+                <i class="fa fa-chevron-left"></i> pysc2_env
               </a>
             
           </div>
@@ -387,8 +385,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/18/BuilderMethod/" rel="prev" title="Builder Method">
-                Builder Method <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/29/项目总结/" rel="prev" title="暑期科研项目总结">
+                暑期科研项目总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -445,8 +443,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/profile.jpg"
@@ -541,6 +548,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心思想-Actor-Critic"><span class="nav-number">1.</span> <span class="nav-text">核心思想 Actor-Critic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantage和Asynchronize"><span class="nav-number">2.</span> <span class="nav-text">Advantage和Asynchronize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#glbal-gt-lobal-local的参数直接从globalNet中获取"><span class="nav-number">3.</span> <span class="nav-text">glbal -&gt; lobal local的参数直接从globalNet中获取</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

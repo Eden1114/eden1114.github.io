@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eden1114.github.io/"/>
-  <updated>2018-08-13T05:14:25.556Z</updated>
+  <updated>2018-08-29T11:12:25.706Z</updated>
   <id>http://eden1114.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>暑期科研项目总结</title>
+    <link href="http://eden1114.github.io/2018/08/29/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/"/>
+    <id>http://eden1114.github.io/2018/08/29/项目总结/</id>
+    <published>2018-08-29T09:40:49.000Z</published>
+    <updated>2018-08-29T11:12:25.706Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="暑期科研工作项目总结"><a href="#暑期科研工作项目总结" class="headerlink" title="暑期科研工作项目总结"></a>暑期科研工作项目总结</h1><h2 id="本次项目的主要内容"><a href="#本次项目的主要内容" class="headerlink" title="本次项目的主要内容"></a>本次项目的主要内容</h2><p>本次暑期科研项目，主要实现了基于A3C算法的智能体完成星际争霸枪兵护互拼的研究。</p><h3 id="本次项目的难点分析"><a href="#本次项目的难点分析" class="headerlink" title="本次项目的难点分析"></a>本次项目的难点分析</h3><p>在利用深度强化学习玩游戏的研究中，星际争霸2中agent还没有取得好的成绩。原因如下：</p><ul><li><p>连续动作控制，每个动作之间有相关性，要从相关的一系列指令中学习</p></li><li><p>agent所处的环境更加复杂，有了战争迷雾的存在，对局势的估计更加的复杂</p></li><li><p>Reward难以估计</p></li></ul><h2 id="先前准备与学习"><a href="#先前准备与学习" class="headerlink" title="先前准备与学习"></a>先前准备与学习</h2><p>对深度学习的基础知识和tensorflow等代码实现有了基本的了解。  </p><p>通过morvan的强化学习教程，深入学习了A3C算法等一系列Actor-Critic算法。</p><h2 id="项目中个人工作和遇到的问题"><a href="#项目中个人工作和遇到的问题" class="headerlink" title="项目中个人工作和遇到的问题"></a>项目中个人工作和遇到的问题</h2><h3 id="工作概述"><a href="#工作概述" class="headerlink" title="工作概述"></a>工作概述</h3><ul><li><p>学习DDPG算法，并做总结梳理</p><p>  在项目开始的第一周，我负责学习DDPG算法和梳理整理DDPG算法的特性。<br>  并考虑使用DDPG算法实现相同的功能与A3C版作对比。</p></li><li><p>参与Reward的设计构思</p><p>  参与构思Reward的设计。对于上层网络和下层网络而言，暴雪分数并不是一个合理的Reward。我们考虑上层网络是战略决策网络，而下层网络是战术决策网络。（策略分层），并设计不同的Reward。  </p><p>  对于一个agent来说，在星际争霸的环境中，实际上是资源抢夺和造兵攻击的零和博弈。为了获取胜利其实要不断提高以下几个比例。在网络的设计中，可以考虑从这三个比例中着手设计Reward。</p><ol><li>资源转化率-&gt;当前已有资源转化为兵力的比例。  </li><li>输出率-&gt;对地方造成输出的和损失兵力的比例。  </li><li><p>获益率-&gt;通过给对方造成伤害，和获得了利益衡量的比例。  </p><p>考虑到agent获取胜利的难度较大，我们考虑通过18分钟的时间作为限制，让agent在与电脑的对战中坚持更长的时间。同时在攻击地方和获得游戏胜利中给予更高的Reward。  </p></li></ol></li><li><p>代码的合并与调试</p><p>  与董浩楠同学一起整理项目的代码，并运行出最初的一些成果。</p></li></ul><h3 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h3><ul><li><p>原版代码的loss问题</p><pre><code>原版代码的损失函数定义为`loss = value_loss + target_loss`,然后通过`dl/dw`更新参数，实际上是有问题的。发现问题后，我和董浩楠同学决定，对网络进行修改，分离Actor和Critic网络，这样在更新参数的时候避免了问题，同时提高了训练速度。</code></pre></li><li><p>tensorflow中scope.reuse的问题</p><pre><code>`tf.get_variable()`会结合`reuse`进行检查返回tensor`tf.placeholder()`和`tf.variable()`不会检查，而是遇到冲突，用命名后加`_1`区分</code></pre></li><li><p>在A3C算法中利用local net的梯度，更新global net，而不是将local net的参数push给global。原版代码中这一部分有很大的问题。</p></li></ul><h2 id="本次项目的收获"><a href="#本次项目的收获" class="headerlink" title="本次项目的收获"></a>本次项目的收获</h2><ul><li><p>通过本次项目经历，我学习到了很多深度学习和强化学习领域的前沿知识。对从未涉足过的一些深度学习算法有了更加深刻的理解和认识。从整个科研项目过程中，体验了科研工作的流程。  </p></li><li><p>在项目开发过程中，我同时学习了deeplearning.ai的深度学习教程，不断夯实自己的基础知识。对深度学习有了更加深入的理解和认识。</p></li></ul><h2 id="问题和启发"><a href="#问题和启发" class="headerlink" title="问题和启发"></a>问题和启发</h2><h3 id="未解决的问题"><a href="#未解决的问题" class="headerlink" title="未解决的问题"></a>未解决的问题</h3><ul><li>使用DDPG算法实现类似功能的Agent，并与A3C版进行性能比较，希望可以在本次研究结束后，抽出一部分时间，完成DDPG算法的实现。</li></ul><h3 id="避免再犯的问题"><a href="#避免再犯的问题" class="headerlink" title="避免再犯的问题"></a>避免再犯的问题</h3><ul><li>本次项目维护代码的过程中，浪费了大量的经历。在一个小组协同开发的项目中，<br>  做好接口的定义和适当的文档说明非常重要。  </li><li>对于代码的维护，建议使用SVN/Git等源代码管理工具，以提高效率和方便对比。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;暑期科研工作项目总结&quot;&gt;&lt;a href=&quot;#暑期科研工作项目总结&quot; class=&quot;headerlink&quot; title=&quot;暑期科研工作项目总结&quot;&gt;&lt;/a&gt;暑期科研工作项目总结&lt;/h1&gt;&lt;h2 id=&quot;本次项目的主要内容&quot;&gt;&lt;a href=&quot;#本次项目的主要内容&quot; c
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>A3C 算法总结</title>
+    <link href="http://eden1114.github.io/2018/08/27/A3C/"/>
+    <id>http://eden1114.github.io/2018/08/27/A3C/</id>
+    <published>2018-08-27T09:48:07.000Z</published>
+    <updated>2018-08-29T09:40:10.343Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="核心思想-Actor-Critic"><a href="#核心思想-Actor-Critic" class="headerlink" title="核心思想 Actor-Critic"></a>核心思想 Actor-Critic</h2><h2 id="Advantage和Asynchronize"><a href="#Advantage和Asynchronize" class="headerlink" title="Advantage和Asynchronize"></a>Advantage和Asynchronize</h2><p>##</p><h2 id="glbal-gt-lobal-local的参数直接从globalNet中获取"><a href="#glbal-gt-lobal-local的参数直接从globalNet中获取" class="headerlink" title="glbal -&gt; lobal local的参数直接从globalNet中获取"></a>glbal -&gt; lobal local的参数直接从globalNet中获取</h2><p>##</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;核心思想-Actor-Critic&quot;&gt;&lt;a href=&quot;#核心思想-Actor-Critic&quot; class=&quot;headerlink&quot; title=&quot;核心思想 Actor-Critic&quot;&gt;&lt;/a&gt;核心思想 Actor-Critic&lt;/h2&gt;&lt;h2 id=&quot;Advan
+      
+    
+    </summary>
+    
+    
+      <category term="DRL" scheme="http://eden1114.github.io/tags/DRL/"/>
+    
+  </entry>
   
   <entry>
     <title>pysc2_env</title>
