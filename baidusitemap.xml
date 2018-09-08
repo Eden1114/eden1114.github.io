@@ -3,6 +3,25 @@
 
 
     
+    
+    
+  <url>
+    <loc>http://eden1114.github.io/2018/08/21/DDPG/</loc>
+    <lastmod>2018-09-08T04:46:02.983Z</lastmod>
+    <data>
+        <display>
+        <title>DDPG算法总结</title>
+        <pubTime>2018-08-21T07:40:12.000Z</pubTime>
+        
+        <tag>Deep Reinforcement Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://eden1114.github.io/2018/02/07/SuffixArray/</loc>
     <lastmod>2018-09-08T03:33:41.387Z</lastmod>
@@ -62,23 +81,6 @@
         <title>暑期科研项目总结</title>
         <pubTime>2018-08-29T09:40:49.000Z</pubTime>
         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://eden1114.github.io/2018/08/21/DDPG/</loc>
-    <lastmod>2018-09-08T03:31:37.569Z</lastmod>
-    <data>
-        <display>
-        <title>DDPG算法总结</title>
-        <pubTime>2018-08-21T07:40:12.000Z</pubTime>
-        
-        <tag>Deep Reinforcement Learning</tag>
-         
          
            
         </display>
