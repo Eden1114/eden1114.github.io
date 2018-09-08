@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Deep Reinforcement Learning," />
 
 
 
@@ -97,21 +97,22 @@
 
 
 
-<meta name="description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
+<meta name="description" content="DDPG算法总结背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就是使用这样的策略，可以让agent在特定环境中的">
+<meta name="keywords" content="Deep Reinforcement Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DDPG算法总结">
-<meta property="og:url" content="http://eden1114.github.io/2018/08/06/DDPG/index.html">
+<meta property="og:url" content="http://eden1114.github.io/2018/08/21/DDPG/index.html">
 <meta property="og:site_name" content="Eden&#39;s Blog">
-<meta property="og:description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
+<meta property="og:description" content="DDPG算法总结背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就是使用这样的策略，可以让agent在特定环境中的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/network.png">
-<meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/softupdate.png">
-<meta property="og:image" content="http://eden1114.github.io/2018/08/06/DDPG/ddpg.jpg">
-<meta property="og:updated_time" content="2018-08-06T11:08:18.368Z">
+<meta property="og:image" content="http://eden1114.github.io/2018/08/21/DDPG/network.png">
+<meta property="og:image" content="http://eden1114.github.io/2018/08/21/DDPG/softupdate.png">
+<meta property="og:image" content="http://eden1114.github.io/2018/08/21/DDPG/ddpg.jpg">
+<meta property="og:updated_time" content="2018-09-08T03:31:37.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DDPG算法总结">
-<meta name="twitter:description" content="Deep Reinforcement Learning/DDPG背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就">
-<meta name="twitter:image" content="http://eden1114.github.io/2018/08/06/DDPG/network.png">
+<meta name="twitter:description" content="DDPG算法总结背景描述RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就是使用这样的策略，可以让agent在特定环境中的">
+<meta name="twitter:image" content="http://eden1114.github.io/2018/08/21/DDPG/network.png">
 
 
 
@@ -140,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://eden1114.github.io/2018/08/06/DDPG/"/>
+  <link rel="canonical" href="http://eden1114.github.io/2018/08/21/DDPG/"/>
 
 
 
@@ -279,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/06/DDPG/">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2018/08/21/DDPG/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangYu">
@@ -308,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T15:01:10+08:00">
-                2018-08-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-21T15:40:12+08:00">
+                2018-08-21
               </time>
             
 
@@ -346,7 +347,7 @@
       
 
       
-        <h1 id="Deep-Reinforcement-Learning-DDPG"><a href="#Deep-Reinforcement-Learning-DDPG" class="headerlink" title="Deep Reinforcement Learning/DDPG"></a>Deep Reinforcement Learning/DDPG</h1><h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a>背景描述</h2><p>RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就是使用这样的策略，可以让agent在特定环境中的行为获得最大的奖励值，从而实现其任务目标。</p>
+        <h1 id="DDPG算法总结"><a href="#DDPG算法总结" class="headerlink" title="DDPG算法总结"></a>DDPG算法总结</h1><h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a>背景描述</h2><p>RL要解决的问题是：让agent学习在一个环境中的如何行为动作(act)， 从而获得最大的奖励值总和(total reward)。这个奖励值一般与agent定义的任务目标关联。agent需要的主要学习内容：第一是行为策略(action policy)， 第二是规划(planning)。其中，行为策略的学习目标是最优策略， 也就是使用这样的策略，可以让agent在特定环境中的行为获得最大的奖励值，从而实现其任务目标。</p>
 <p>行为(action)可以简单分为：</p>
 <ul>
 <li><p>连续的：如赛车游戏中的方向盘角度、油门、刹车控制信号，机器人的关节伺服电机控制信号等</p>
@@ -359,13 +360,13 @@
 <p>Q函数的实现和训练方法，采用了Deepmind 2015年发表的DQN方法。</p>
 <h3 id="online网络与target网络"><a href="#online网络与target网络" class="headerlink" title="online网络与target网络"></a>online网络与target网络</h3><p>以往的实践证明，如果只使用单个”Q神经网络”的算法，学习过程很不稳定，因为Q网络的参数在频繁gradient update的同时，又用于计算Q网络和策略网络的gradient。</p>
 <p>基于此，DDPG分别为策略网络、Q网络各创建两个神经网络拷贝,一个叫做online，一个叫做target:</p>
-<p><img src="/2018/08/06/DDPG/./network.png" alt="network"></p>
+<p><img src="/2018/08/21/DDPG/./network.png" alt="network"></p>
 <p>在训练完一个mini-batch的数据之后，通过随机梯度下降更新online网络的参数，然后再通过soft update算法更新 target 网络的参数。soft update是一种running average的算法：</p>
-<p><img src="/2018/08/06/DDPG/./softupdate.png" alt="softupdate"></p>
+<p><img src="/2018/08/21/DDPG/./softupdate.png" alt="softupdate"></p>
 <p>也就是每次target网络参数的更新，是target网络参数和online网络参数的线性组合。这样做的优点和缺点都很明显。</p>
 <p>优点：target网络参数变化小，用于在训练过程中计算online网络的gradient，比较稳定，训练易于收敛。  </p>
 <p>代价：参数变化小，学习过程变慢。</p>
-<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img src="/2018/08/06/DDPG/./ddpg.jpg" alt="ddpg algorithm">  </p>
+<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img src="/2018/08/21/DDPG/./ddpg.jpg" alt="ddpg algorithm">  </p>
 <p>首先代码的第一部分是初始化。  </p>
 <ul>
 <li>初始化actor\critic的 online 神经网络参数: θQ 和 θμ</li>
@@ -420,6 +421,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Reinforcement-Learning/" rel="tag"># Deep Reinforcement Learning</a>
+          
+        </div>
+      
 
       
       
@@ -429,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/22/2018-1-22/" rel="next" title="组合游戏 - SG函数和SG定理">
-                <i class="fa fa-chevron-left"></i> 组合游戏 - SG函数和SG定理
+              <a href="/2018/08/10/pysc2-env/" rel="next" title="pysc2_env">
+                <i class="fa fa-chevron-left"></i> pysc2_env
               </a>
             
           </div>
@@ -439,8 +446,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/06/Office/" rel="prev" title="Office 破解">
-                Office 破解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/27/A3C/" rel="prev" title="A3C 算法总结">
+                A3C 算法总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -535,7 +542,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -612,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Reinforcement-Learning-DDPG"><span class="nav-number">1.</span> <span class="nav-text">Deep Reinforcement Learning/DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG"><span class="nav-number">1.2.</span> <span class="nav-text">DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#online网络与target网络"><span class="nav-number">1.2.1.</span> <span class="nav-text">online网络与target网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法流程"><span class="nav-number">1.3.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG对于DPG的关键改进"><span class="nav-number">1.4.</span> <span class="nav-text">DDPG对于DPG的关键改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式的推导"><span class="nav-number">1.5.</span> <span class="nav-text">公式的推导</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DDPG算法总结"><span class="nav-number">1.</span> <span class="nav-text">DDPG算法总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG"><span class="nav-number">1.2.</span> <span class="nav-text">DDPG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#online网络与target网络"><span class="nav-number">1.2.1.</span> <span class="nav-text">online网络与target网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法流程"><span class="nav-number">1.3.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPG对于DPG的关键改进"><span class="nav-number">1.4.</span> <span class="nav-text">DDPG对于DPG的关键改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式的推导"><span class="nav-number">1.5.</span> <span class="nav-text">公式的推导</span></a></li></ol></li></ol></div>
             
 
           </div>
