@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eden1114.github.io/"/>
-  <updated>2018-09-08T03:32:01.485Z</updated>
+  <updated>2018-10-09T13:11:08.086Z</updated>
   <id>http://eden1114.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微动作组合</title>
+    <link href="http://eden1114.github.io/2018/10/09/%E5%BE%AE%E5%8A%A8%E4%BD%9C%E7%BB%84%E5%90%88/"/>
+    <id>http://eden1114.github.io/2018/10/09/微动作组合/</id>
+    <published>2018-10-09T13:06:44.000Z</published>
+    <updated>2018-10-09T13:11:08.086Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="星际争霸项目中微动作组合的思路"><a href="#星际争霸项目中微动作组合的思路" class="headerlink" title="星际争霸项目中微动作组合的思路"></a>星际争霸项目中微动作组合的思路</h1><h2 id="计算机组成原理中，对复杂流程的实现思想"><a href="#计算机组成原理中，对复杂流程的实现思想" class="headerlink" title="计算机组成原理中，对复杂流程的实现思想"></a>计算机组成原理中，对复杂流程的实现思想</h2><ul><li>程序的本质是指令的序列，指令是一个可以被机器所识别执行的操作。</li><li>实现指令的方法可以讲指令拆分成微指令</li></ul><ul><li>为了使得CPU的时间被充分利用，</li></ul><p>hexo </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;星际争霸项目中微动作组合的思路&quot;&gt;&lt;a href=&quot;#星际争霸项目中微动作组合的思路&quot; class=&quot;headerlink&quot; title=&quot;星际争霸项目中微动作组合的思路&quot;&gt;&lt;/a&gt;星际争霸项目中微动作组合的思路&lt;/h1&gt;&lt;h2 id=&quot;计算机组成原理中，对复杂流
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>暑期科研项目总结</title>
