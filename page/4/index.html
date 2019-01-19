@@ -310,6 +310,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/24/Factory_Method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="Read The Fucking source code.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/24/Factory_Method/" itemprop="url">
+                  Factory Method
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-10-24 14:54:39" itemprop="dateCreated datePublished" datetime="2017-10-24T14:54:39+08:00">2017-10-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-10-26 00:25:54" itemprop="dateModified" datetime="2017-10-26T00:25:54+08:00">2017-10-26</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>工厂模式是我们最常用的实例化对象模式之一。<br>特点是，使用工厂方法代替new操作的一种模式。</p>
+<p>使用工厂模式，可以给系统更大的可扩展性和尽量少的修改量<br>因为工厂模式就相当于创建实例对象的new，我们经常要根据类Class生成实例对象，如A a=new A()<br>工厂模式也是用来创建实例对象的，所以以后new时就要多个心眼，是否可以考虑使用工厂模式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 工厂模式&lt;br&gt;</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> YangYu</span></span><br><span class="line"><span class="comment">* <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Sample a = <span class="keyword">new</span> Sameple(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//通过</span></span><br><span class="line">    Sample b = <span class="keyword">new</span> creator(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> arg;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> x</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span> Sample</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Sample</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      arg = x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sample <span class="title">creator</span><span class="params">(<span class="keyword">int</span> which)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (which == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Sample(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (which == <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Sample(<span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2017/10/24/Exceptions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -819,7 +972,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
