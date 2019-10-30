@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="终于到了九月底了，准备了3个多月的保研大战终于落下了帷幕。回顾自己大学前三年的保研经历，所遇到的风雨坎坷还是很多的，也有许多经验值得分享。 为什么要读研（读博）保研的第一步，也是最重要的一步，就是问自己，自己为什么要读研究生和为什么要读博？这个问题的回答因人而异。但是这个问题的答案却是指引你每一步行动的核心。 于我个人而言，读研的目的在于： 1. 希望自己在学历上有所改善，本科是一所普通的211学">
+<meta name="keywords" content="Study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机方向保研总结">
+<meta property="og:url" content="http://eden1114.github.io/2019/10/04/保研总结/index.html">
+<meta property="og:site_name" content="Eden&#39;s Blog">
+<meta property="og:description" content="终于到了九月底了，准备了3个多月的保研大战终于落下了帷幕。回顾自己大学前三年的保研经历，所遇到的风雨坎坷还是很多的，也有许多经验值得分享。 为什么要读研（读博）保研的第一步，也是最重要的一步，就是问自己，自己为什么要读研究生和为什么要读博？这个问题的回答因人而异。但是这个问题的答案却是指引你每一步行动的核心。 于我个人而言，读研的目的在于： 1. 希望自己在学历上有所改善，本科是一所普通的211学">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-27T06:05:06.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机方向保研总结">
+<meta name="twitter:description" content="终于到了九月底了，准备了3个多月的保研大战终于落下了帷幕。回顾自己大学前三年的保研经历，所遇到的风雨坎坷还是很多的，也有许多经验值得分享。 为什么要读研（读博）保研的第一步，也是最重要的一步，就是问自己，自己为什么要读研究生和为什么要读博？这个问题的回答因人而异。但是这个问题的答案却是指引你每一步行动的核心。 于我个人而言，读研的目的在于： 1. 希望自己在学历上有所改善，本科是一所普通的211学">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eden's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://eden1114.github.io/2019/10/04/保研总结/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>计算机方向保研总结 | Eden's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eden's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Read The Fucking source code.</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://eden1114.github.io/2019/10/04/保研总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangYu">
+      <meta itemprop="description" content="Read The Fucking source code.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机方向保研总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-04 21:06:44" itemprop="dateCreated datePublished" datetime="2019-10-04T21:06:44+08:00">2019-10-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-27 14:05:06" itemprop="dateModified" datetime="2019-10-27T14:05:06+08:00">2019-10-27</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/04/保研总结/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2019/10/04/保研总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>终于到了九月底了，准备了3个多月的保研大战终于落下了帷幕。回顾自己大学前三年的保研经历，所遇到的风雨坎坷还是很多的，也有许多经验值得分享。</p>
+<h2 id="为什么要读研（读博）"><a href="#为什么要读研（读博）" class="headerlink" title="为什么要读研（读博）"></a>为什么要读研（读博）</h2><p>保研的第一步，也是最重要的一步，就是问自己，自己为什么要读研究生和为什么要读博？这个问题的回答因人而异。但是这个问题的答案却是指引你每一步行动的核心。</p>
+<p>于我个人而言，读研的目的在于：</p>
+<pre><code>1. 希望自己在学历上有所改善，本科是一所普通的211学校，名气一般。而通过读研，可以让自己的学历更上一层楼。
+2. 本科阶段的课程比较基础，希望能够往深处挖掘一些东西。我对计算机科学有着浓厚的兴趣，喜欢钻研、探究。能从研究中获得乐趣。但对简单的开发工作感到无聊。
+3. 本身具有比较好的成绩，有保研的客观条件。
+</code></pre><p>与我个人而言，不选择直博的原因：</p>
+<pre><code>1.本科阶段只是接触了一些科研训练，没有触及科研工作的核心。
+2.从小的理想是希望以后去谷歌工作，更想去工业界而不是学术圈。
+3.读博面临的风险太大，遇到坑导师，可能会几年无法毕业。
+</code></pre><p>基于以上，我做出了在国内读硕士，先更深层次的接触科研工作，大四找机会实习。寻找自己真正适合的方向。<br>如果以后想读博，出国读博也会是个不错的选择。</p>
+<h2 id="保研的前期准备"><a href="#保研的前期准备" class="headerlink" title="保研的前期准备"></a>保研的前期准备</h2><p>回答了为什么保研以后，接下来就是怎么保研的问题了。每个学校的具体政策不一，但是总体上无非是<strong>学习成绩、竞赛获奖、科研经历、英语水平</strong>这四项决定了你的选择空间。从招生老师的角度思考，他们会希望招收的研究生，基础扎实、适应科研工作、动手能力强、能阅读撰写英文科研文献等。那在本科阶段，如果下决心要保研，那就需要成绩名列前茅，能获得推免资格。同时各项能力也要突出，有获奖和经历可以证明自己。</p>
+<p>学习成绩上，对于保研最有用的是前五个学期成绩和前三年成绩。这两个成绩会在夏令营和预推免中遇到。一般清华北大的研究生申请标准是在前5%，但是实际上录取的学生多半是前几名，如果想去清北华五等院校，那么至少要在你的专业排名前几位。</p>
+<p>科研经历上，最好选择自己以后决定从事的方向去做一些东西，老师会比较喜欢和自己研究方向match的学生。在面试的时候，老师会问项目里感兴趣的地方，你的回答要比较自信，同时要有清晰的思路。所以自己去做一个项目，哪怕再简单，也要能清晰的表述出来。</p>
+<p>英语水平上，最好在大一就通过四六级考试。分数越高越好，如果自己喜欢英语，考一考雅思托福更好。清华伯克利深圳学院是全英文面试、清华CMU硕士则需要托福GRE成绩（详见官网）。一般参加清北夏令营的同学的六级成绩都在540分左右，而入营的标准要求是450分。所以尽可能的考好英语。</p>
+<p>竞赛获奖上，数学建模比赛算是大学生水奖的天堂，基本上人人都会有数学建模的获奖。但是没有就会比较吃亏。除此之外，大学生大创项目，也有很高的认可程度。计算机专业的ACM程序设计竞赛的认可程度也非常高。</p>
+<p>值得一提的是，实习经历和工程项目经历一般的老师不会太在意，但是也要一些老师工程能力强，整天拉项目搞钱而不去做学术会比较在意这个。但是不建议选择这样的老师，除非走投无路。</p>
+<p>所以我给正在准备保研的同学一个建议是：刷高绩点排名（尤其是前5个学期成绩，对于夏令营申请至关重要），多参与科研竞赛（数学建模比赛，ACM，大创等最好都能获奖），大一最好就通过英语四六级考试，如果英语学习不吃力，能考雅思托福就去考一考。</p>
+<p>这些前期准备的目的，是为了让你简历更加丰富，是敲门砖，也是保研的基本盘。</p>
+<h2 id="夏令营阶段"><a href="#夏令营阶段" class="headerlink" title="夏令营阶段"></a>夏令营阶段</h2><p>到了大三的下学期，保研的准备工作就基本开始了。这个时候会有各个高校的夏令营开发报名。要随时关注动向，</p>
+<p>核心的点包括你的<strong>报名材料（报名表、简历、自我简述、推荐信）、套磁邮件</strong>等。</p>
+<p>这里提示的是，根据自己的能力水平和意向，判断哪些学校是可以去的。</p>
+<p>夏令营的时候我报名了：北大信科、北大信工、中科大、南大、北航、电子科技大学。最终进了北大信工、北航。</p>
+<p>因为各个文书准备很麻烦，还要去教学科盖章，建议大家集中准备，同时报的越多越好。因为很多夏令营实际上是会冲突的。而且每个学校都可能录或者不录你。并不是你优秀就会要你，老师也会考虑你鸽不鸽的可能性，所以要多尝试，能报的都报了最好。</p>
+<p>有的学校夏令营会发Offer，而有的不会发。一般不发Offer的，都会在九推的时候决定是否给Offer。但是夏令营是一个和老师交流的好机会。虽然很多学校政策上说了不发Offer，但是夏令营基本上也就确定了。</p>
+<p>因为北大信工和北航的夏令营冲突了，所以我夏令营就参加了北大信工的。</p>
+<p>北大信工的夏令营以师生互动为主。<br>首先老师会给学生介绍自己的实验室情况。北大信工的老师和本部数字媒体所合作很多，有不少图像、音频方向的老师。</p>
+<p>除了老师介绍，学生也有个人展示，向老师介绍自己。这个需要认真准备。</p>
+<p>清北的夏令营都是神仙打架，但是还是要自信，突出自己的亮点。有不少同学是直接用英语做的presentation，内容也是各种获奖，非常的强。</p>
+<p>然后夏令营的时候可以抽空与老师面试，去的越早越好。因为去晚了很可能就没有名额了。</p>
+<p>面试不同的老师细节会不太一样，基本上会让你介绍自己的项目经历、读一些论文、问一些数学题等。五花八门。。</p>
+<h2 id="九月预推免"><a href="#九月预推免" class="headerlink" title="九月预推免"></a>九月预推免</h2><pre><code>因为夏令营北大信工是不发Offer的。所以九推的时候压力很大。
+有了夏令营的一些经验，我九推报了很多学校：清华深研院、计算所、北大深研院、中科大计算机、浙大计算机、南大计算机。
+最终参加了清华深研院、浙大计算机、北大深研院的九推。
+
+清华深研院的九推包括笔试和面试。笔试是一些经典的面试题，有空单独列举一下。
+面试三个学校基本差不多：
+    主要是英文自我介绍，以及用英文回答一些简单的问题（比如对AI的了解之类的）。
+    然后就是项目经历、老师会对你做过的项目中比较感兴趣的进行询问。
+    然后是一些基础知识，抽题目回答。
+浙大的机试可以用浙大PAT成绩覆盖，难度不大，很多人满分。
+
+最终3个学校的资格我都拿到了。最终选择了清华深研院的专硕。
+放弃了北大信工直博和浙大学硕，可能还有点小后悔。毕竟北大待我不薄啊。而清华是第一个给我Offer的，就去清华了吧。。
+</code></pre><h2 id="捡漏"><a href="#捡漏" class="headerlink" title="捡漏"></a>捡漏</h2><pre><code>即使到了9月28号填系统的以后，也并不代表后面没有机会了。
+在10月4号左右，中科大和浙大的保研群里还有发消息，问有直博名额，有没有可以来。
+不过这个时候压力可能会比较大吧。但是一定要有自信！
+</code></pre><h2 id="面试题汇总"><a href="#面试题汇总" class="headerlink" title="面试题汇总"></a>面试题汇总</h2><h3 id="清华深研院笔试"><a href="#清华深研院笔试" class="headerlink" title="清华深研院笔试"></a>清华深研院笔试</h3><ol>
+<li><p>一根粗细不均匀的绳子，从头到尾烧完要一小时。你有许多条，如何作15分钟计时？</p>
+</li>
+<li><p>一个岔路口分别通向诚实国和说谎国。来了两个人，已知一个是诚实国的，另一个是说谎国的，诚实国永远说实话，说谎国永远说谎话。现在你要去说谎国，但不知道应该走哪条路，需要问这两个人。请问应该怎么问？</p>
+</li>
+<li><p>甲乙丙3人都要从A地到B地，A，B 2地相距42千米，甲骑摩拖车，一次只能带一个人，摩 拖车每小时行36千米，人步行每小时行4千米。如果采用摩拖车和步行相结和的办法，3人同时从A地出发，全部到达B地，最快要多长时间？</p>
+</li>
+<li><p>用一根长为m的铁丝，分别围成圆形、三角形、正方形，问三个面积和的最值？</p>
+</li>
+<li><p>你有一个7分钟沙漏，一个4分钟沙漏。怎样计时9分钟？</p>
+</li>
+<li><p>Z= 2-ax^2 - by^2 在（0，0）处，沿着（3，4）方向有最大方向导数？</p>
+</li>
+<li><p>求Z = 2-x^2-y^2 在z&gt;0上的面积</p>
+</li>
+<li><p>求正态分布中方差的的极大似然估计</p>
+</li>
+<li><p>一枚鱼雷打潜艇。 1/2 击沉， 1/3 击伤 1/6 击不中。 一共4枚鱼雷，问击沉的的概率是多少？</p>
+</li>
+</ol>
+<h3 id="北大面试"><a href="#北大面试" class="headerlink" title="北大面试"></a>北大面试</h3><ol>
+<li>全局变量和局部变量有什么区别？分别在哪里存储？</li>
+</ol>
+<h3 id="浙大机试"><a href="#浙大机试" class="headerlink" title="浙大机试"></a>浙大机试</h3><ol>
+<li><p>给定一个AVL树的插入序列，问是否会发生旋转？（浙大机试）</p>
+</li>
+<li><p>happy nubmers（模拟）</p>
+</li>
+</ol>
+<p>3.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Study/" rel="tag"># Study</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/09/微动作组合/" rel="next" title="星际争霸项目中微动作组合的思路_微动作组合">
+                <i class="fa fa-chevron-left"></i> 星际争霸项目中微动作组合的思路_微动作组合
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YangYu</p>
+              <p class="site-description motion-element" itemprop="description">Read The Fucking source code.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/eden1114" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yangyu773964676@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要读研（读博）"><span class="nav-number">1.</span> <span class="nav-text">为什么要读研（读博）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保研的前期准备"><span class="nav-number">2.</span> <span class="nav-text">保研的前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#夏令营阶段"><span class="nav-number">3.</span> <span class="nav-text">夏令营阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九月预推免"><span class="nav-number">4.</span> <span class="nav-text">九月预推免</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捡漏"><span class="nav-number">5.</span> <span class="nav-text">捡漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题汇总"><span class="nav-number">6.</span> <span class="nav-text">面试题汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#清华深研院笔试"><span class="nav-number">6.1.</span> <span class="nav-text">清华深研院笔试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#北大面试"><span class="nav-number">6.2.</span> <span class="nav-text">北大面试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浙大机试"><span class="nav-number">6.3.</span> <span class="nav-text">浙大机试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YangYu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'Eden1114',
+            repo: 'eden1114.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '567c41b3ef52f504c7241d1de1aab5bf555b38cc',
+            
+                client_id: 'da28468fa8a15bbc13f0'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

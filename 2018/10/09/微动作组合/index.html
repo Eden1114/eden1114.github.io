@@ -108,17 +108,18 @@
 
 
 
-  <meta name="description" content="星际争霸项目中微动作组合的思路计算机组成原理中，对复杂流程的实现思想 程序的本质是指令的序列，指令是一个可以被机器所识别执行的操作。 实现指令的方法可以讲指令拆分成微指令   为了使得CPU的时间被充分利用，  hexo">
+  <meta name="description" content="计算机组成原理中，对复杂流程的实现思想动作的拆解与合并 程序的本质是指令的序列，指令是一个可以被机器所识别和执行的具体操作。 实现指令的方法中，可以将指令拆分成微指令。  操作时间的分配 为了使得CPU的时间被充分利用，引入中断机制等。 因此引入了中断机制，和多线程技术等，使得更多的任务可以并行化处理。  EMMM借鉴计算机组成的思想，我们可以对SC2中，分层网络进行优化。  动作组合本身pysc">
+<meta name="keywords" content="StarCraftII">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微动作组合">
+<meta property="og:title" content="星际争霸项目中微动作组合的思路_微动作组合">
 <meta property="og:url" content="http://eden1114.github.io/2018/10/09/微动作组合/index.html">
 <meta property="og:site_name" content="Eden&#39;s Blog">
-<meta property="og:description" content="星际争霸项目中微动作组合的思路计算机组成原理中，对复杂流程的实现思想 程序的本质是指令的序列，指令是一个可以被机器所识别执行的操作。 实现指令的方法可以讲指令拆分成微指令   为了使得CPU的时间被充分利用，  hexo">
+<meta property="og:description" content="计算机组成原理中，对复杂流程的实现思想动作的拆解与合并 程序的本质是指令的序列，指令是一个可以被机器所识别和执行的具体操作。 实现指令的方法中，可以将指令拆分成微指令。  操作时间的分配 为了使得CPU的时间被充分利用，引入中断机制等。 因此引入了中断机制，和多线程技术等，使得更多的任务可以并行化处理。  EMMM借鉴计算机组成的思想，我们可以对SC2中，分层网络进行优化。  动作组合本身pysc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-09T13:11:08.086Z">
+<meta property="og:updated_time" content="2019-10-27T05:41:46.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微动作组合">
-<meta name="twitter:description" content="星际争霸项目中微动作组合的思路计算机组成原理中，对复杂流程的实现思想 程序的本质是指令的序列，指令是一个可以被机器所识别执行的操作。 实现指令的方法可以讲指令拆分成微指令   为了使得CPU的时间被充分利用，  hexo">
+<meta name="twitter:title" content="星际争霸项目中微动作组合的思路_微动作组合">
+<meta name="twitter:description" content="计算机组成原理中，对复杂流程的实现思想动作的拆解与合并 程序的本质是指令的序列，指令是一个可以被机器所识别和执行的具体操作。 实现指令的方法中，可以将指令拆分成微指令。  操作时间的分配 为了使得CPU的时间被充分利用，引入中断机制等。 因此引入了中断机制，和多线程技术等，使得更多的任务可以并行化处理。  EMMM借鉴计算机组成的思想，我们可以对SC2中，分层网络进行优化。  动作组合本身pysc">
 
 
 
@@ -137,7 +138,7 @@
   };
 </script>
 
-  <title>微动作组合 | Eden's Blog</title>
+  <title>星际争霸项目中微动作组合的思路_微动作组合 | Eden's Blog</title>
   
 
 
@@ -327,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">微动作组合
+          <h1 class="post-title" itemprop="name headline">星际争霸项目中微动作组合的思路_微动作组合
               
             
           </h1>
@@ -352,12 +353,24 @@
                 
               
 
-              <time title="Created: 2018-10-09 21:06:44 / Modified: 21:11:08" itemprop="dateCreated datePublished" datetime="2018-10-09T21:06:44+08:00">2018-10-09</time>
+              <time title="Created: 2018-10-09 21:06:44" itemprop="dateCreated datePublished" datetime="2018-10-09T21:06:44+08:00">2018-10-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-27 13:41:46" itemprop="dateModified" datetime="2019-10-27T13:41:46+08:00">2019-10-27</time>
               
             
           </span>
@@ -400,14 +413,23 @@
       
 
       
-        <h1 id="星际争霸项目中微动作组合的思路"><a href="#星际争霸项目中微动作组合的思路" class="headerlink" title="星际争霸项目中微动作组合的思路"></a>星际争霸项目中微动作组合的思路</h1><h2 id="计算机组成原理中，对复杂流程的实现思想"><a href="#计算机组成原理中，对复杂流程的实现思想" class="headerlink" title="计算机组成原理中，对复杂流程的实现思想"></a>计算机组成原理中，对复杂流程的实现思想</h2><ul>
-<li>程序的本质是指令的序列，指令是一个可以被机器所识别执行的操作。</li>
-<li>实现指令的方法可以讲指令拆分成微指令</li>
+        <h2 id="计算机组成原理中，对复杂流程的实现思想"><a href="#计算机组成原理中，对复杂流程的实现思想" class="headerlink" title="计算机组成原理中，对复杂流程的实现思想"></a>计算机组成原理中，对复杂流程的实现思想</h2><h3 id="动作的拆解与合并"><a href="#动作的拆解与合并" class="headerlink" title="动作的拆解与合并"></a>动作的拆解与合并</h3><ul>
+<li>程序的本质是指令的序列，指令是一个可以被机器所识别和执行的具体操作。</li>
+<li>实现指令的方法中，可以将指令拆分成微指令。</li>
 </ul>
-<ul>
-<li>为了使得CPU的时间被充分利用，</li>
+<h3 id="操作时间的分配"><a href="#操作时间的分配" class="headerlink" title="操作时间的分配"></a>操作时间的分配</h3><ul>
+<li>为了使得CPU的时间被充分利用，引入中断机制等。</li>
+<li>因此引入了中断机制，和多线程技术等，使得更多的任务可以并行化处理。</li>
 </ul>
-<p>hexo </p>
+<h3 id="EMMM"><a href="#EMMM" class="headerlink" title="EMMM"></a>EMMM</h3><p>借鉴计算机组成的思想，我们可以对SC2中，分层网络进行优化。</p>
+<ol>
+<li>动作组合<br>本身pysc2提供的API只封装了最基础的操作，而人类玩家在游戏的过程中，会倾向于把一类操作<br>视为（抽象为）一个整体的动作。</li>
+</ol>
+<p>这里我们把SC2库提供的动作视为指令。而一个指令的内容太少，无法在游戏中完成复杂的任务。<br>我们需要将指令合并成为一个动作，动作包含了一条或多条指令。这需要人手工编码完成。</p>
+<p>为了使得策略得以分层，我们需要对agent的框架进行改变。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">动作看成动作树，即一个广义的动作，可以拆解成更小的动作和指令序列的组合。</span><br><span class="line">更小的动作，可以视为指令序列的组合。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        进攻</span><br><span class="line">       /  \</span><br><span class="line">    选兵   选点</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Decider  -&gt; action</span></span><br><span class="line"><span class="comment">#   |            |</span></span><br><span class="line"><span class="comment"># Operater -&gt; 拆解action成指令序列，并安排指令序列的执行</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decider</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        上层决策的决策者网络</span></span><br><span class="line"><span class="string">        输入：</span></span><br><span class="line"><span class="string">        环境信息</span></span><br><span class="line"><span class="string">        输出：</span></span><br><span class="line"><span class="string">        选择执行的动作（如果可能，可以是输出一段指定长度的指令序列）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        then-&gt;将指令序列封装成动作，添加动作标号，放在动作池中</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        REWARD：</span></span><br><span class="line"><span class="string">            # 动作执行完成程度 * loss'</span></span><br><span class="line"><span class="string">            # 动作的全部指令执行完成后进行参数更新</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Operater</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        下层网络可以使用朴素的方法预先设计好。</span></span><br><span class="line"><span class="string">        即编码执行规则，接收动作然后执行。</span></span><br><span class="line"><span class="string">        接受上层网络，判断执行过程，空闲时间切换任务并执行。</span></span><br><span class="line"><span class="string">        这类似于计算机，CPU的运行规则是实现设计好的。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        更深的一层思考，我们可以考虑用一个网络来实现该功能实现策略分层。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        下层决策的操作者网络</span></span><br><span class="line"><span class="string">        输入：</span></span><br><span class="line"><span class="string">            环境信息，动作池中的动作</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        输出：</span></span><br><span class="line"><span class="string">            执行的指令的编号</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        REWARD：</span></span><br><span class="line"><span class="string">            # 指令完成后进行参数更新</span></span><br><span class="line"><span class="string">            # 衡量动作执行成果</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    '''</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -425,6 +447,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/StarCraftII/" rel="tag"># StarCraftII</a>
+          
+        </div>
       
 
       
@@ -444,6 +472,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/04/保研总结/" rel="prev" title="计算机方向保研总结">
+                计算机方向保研总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -520,7 +552,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -549,7 +581,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -606,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#星际争霸项目中微动作组合的思路"><span class="nav-number">1.</span> <span class="nav-text">星际争霸项目中微动作组合的思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机组成原理中，对复杂流程的实现思想"><span class="nav-number">1.1.</span> <span class="nav-text">计算机组成原理中，对复杂流程的实现思想</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机组成原理中，对复杂流程的实现思想"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理中，对复杂流程的实现思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动作的拆解与合并"><span class="nav-number">1.1.</span> <span class="nav-text">动作的拆解与合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作时间的分配"><span class="nav-number">1.2.</span> <span class="nav-text">操作时间的分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EMMM"><span class="nav-number">1.3.</span> <span class="nav-text">EMMM</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -626,7 +660,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
