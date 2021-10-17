@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Yu Yang(杨宇)</title>
+  
+  <subtitle>Hello</subtitle>
+  <link href="http://www.eden1114.site/atom.xml" rel="self"/>
+  
+  <link href="http://www.eden1114.site/"/>
+  <updated>2021-10-17T14:33:39.548Z</updated>
+  <id>http://www.eden1114.site/</id>
+  
+  <author>
+    <name>Yu Yang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>About me</title>
+    <link href="http://www.eden1114.site/2021/10/17/About-me/"/>
+    <id>http://www.eden1114.site/2021/10/17/About-me/</id>
+    <published>2021-10-17T08:37:24.000Z</published>
+    <updated>2021-10-17T14:33:39.548Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h2><p>I am a graduate student at Tsinghua University.</p><p>My research interest focuses on reinforcement learning and AGI.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;About-me&quot;&gt;&lt;a href=&quot;#About-me&quot; class=&quot;headerlink&quot; title=&quot;About me&quot;&gt;&lt;/a&gt;About me&lt;/h2&gt;&lt;p&gt;I am a graduate student at Tsinghua University</summary>
+      
+    
+    
+    
+    
+    <category term="About" scheme="http://www.eden1114.site/tags/About/"/>
+    
+  </entry>
+  
+</feed>
